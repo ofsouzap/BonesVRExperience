@@ -1,43 +1,45 @@
+﻿using BonesVr.Ui;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace BonesVr.Ui
+namespace BonesVr.UI
 {
-    public class FloatHintText : MonoBehaviour
+    public class FloatHint : MonoBehaviour
     {
         [SerializeField] private LineRenderer _lineRenderer;
-        protected LineRenderer LineRenderer { get; private set; }
+        protected LineRenderer LineRenderer => _lineRenderer;
 
         [SerializeField] private Canvas _uiCanvas;
-        protected Canvas UiCanvas { get; private set; }
+        public Canvas UiCanvas => _uiCanvas;
 
-        [SerializeField] private FloatHintTarget _target;
-        protected FloatHintTarget Target { get; private set; }
+        private FloatHintTarget _target;
+        public FloatHintTarget Target => _target;
+
+        [SerializeField] private TMP_Text _text;
+        protected TMP_Text Text => _text;
+
+        [Tooltip("The message to display in the hint box")]
+        [SerializeField] private string _message;
+        public string Message => _message;
+
+        [Tooltip("The position to display the text relative to the hint target")]
+        [SerializeField] private Vector2 _relativePos;
+        protected Vector2 RelativePos => _relativePos;
 
         public bool Shown { get; private set; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
-            LineRenderer = _lineRenderer;
-            if (LineRenderer == null)
-                LineRenderer = GetComponentInChildren<LineRenderer>();
-            if (LineRenderer == null)
-                Debug.LogWarning("No LineRenderer component found");
+            if (Text == null) Debug.LogWarning("No text component provided");
+            else Text.text = Message;
 
-            UiCanvas = _uiCanvas;
-            if (UiCanvas == null)
-                UiCanvas = GetComponentInChildren<Canvas>();
-            if (UiCanvas == null)
-                Debug.LogWarning("No UI Canvas component found");
+            _target = GetComponentInChildren<FloatHintTarget>();
+            if (Target == null) Debug.LogWarning("No float hint target component found");
 
-            Target = _target;
-            if (Target == null)
-                Target = GetComponentInChildren<FloatHintTarget>();
-            if (Target == null)
-                Debug.LogWarning("No target found");
+            if (LineRenderer == null) Debug.LogWarning("No LineRenderer component provided");
+            if (UiCanvas == null) Debug.LogWarning("No UI Canvas component provided");
 
-            //HideHint();
-            ShowHint();
+            HideHint();
         }
 
         protected virtual void Update()
@@ -49,11 +51,14 @@ namespace BonesVr.Ui
         private void RefreshTextTransform()
         {
             Transform camera = Camera.main.transform;
+            Vector3 cameraTargetDisp = Target.transform.position - camera.position;
+            Vector3 targetViewPlaneRight = Vector3.Cross(cameraTargetDisp, Vector3.up).normalized;
+            Vector3 targetViewPlaneUp = Vector3.Cross(targetViewPlaneRight, cameraTargetDisp).normalized;
 
-            // Face towards camera
-            UiCanvas.transform.rotation = Quaternion.LookRotation(UiCanvas.transform.position - camera.position);
-
-            // TODO - move hint text so that it is a good distance from camera and also in an appropriate position not too far away from target
+            UiCanvas.transform.SetPositionAndRotation(
+                Target.transform.position - (RelativePos.x * targetViewPlaneRight) + (RelativePos.y * targetViewPlaneUp),
+                Quaternion.LookRotation(UiCanvas.transform.position - camera.position)
+            );
         }
 
         private void RefreshLinePositions()
@@ -104,7 +109,7 @@ namespace BonesVr.Ui
             ShowUiText();
             Shown = true;
         }
-        
+
         public void HideHint()
         {
             HideLine();
@@ -113,4 +118,3 @@ namespace BonesVr.Ui
         }
     }
 }
-
