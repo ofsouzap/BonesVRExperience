@@ -58,39 +58,34 @@ namespace BonesVr.Ui
 
         private void RefreshLinePositions()
         {
-            Vector3[] poss = CalcLinePositions(transform.position, Target.transform.position, Camera.main.transform.position);
+            Vector3[] poss = CalcLinePositions(Target.transform.position, UiCanvas.transform.position, Camera.main.transform.position);
             LineRenderer.SetPositions(poss);
             LineRenderer.positionCount = poss.Length;
         }
 
         protected static Vector3[] CalcLinePositions(Vector3 start, Vector3 end, Vector3 camera)
         {
+            const float fac1 = 0.25f;
+            const float fac2 = 0.75f;
+
             Vector3 displacement = end - start;
 
-            Vector3 cameraEndDisplacement = end - camera;
+            Vector3 billboardForward = (end - camera).normalized;
+            Vector3 billboardRight = Vector3.Cross(billboardForward, Vector3.up);
+            Vector3 billboardUp = Vector3.Cross(billboardRight, billboardForward);
 
-            Vector2 planeStart = new(start.x, start.z);
+            float distForward = Vector3.Dot(displacement, billboardForward);
+            float distRight = Vector3.Dot(displacement, billboardRight);
+            float distUp = Vector3.Dot(displacement, billboardUp);
 
-            Vector2 planeForward = new Vector2(
-                cameraEndDisplacement.x,
-                cameraEndDisplacement.z
-            ).normalized;
-            Vector3 planeForwardV3 = new(planeForward.x, 0, planeForward.y);
-
-            Vector3 planeRightV3 = Vector3.Cross(planeForwardV3, Vector3.up);
-            Vector2 planeRight = new Vector2(planeRightV3.x, planeRightV3.z).normalized;
-
-            float distForward = Vector3.Dot(displacement, planeForward);
-            float distRight = Vector3.Dot(displacement, planeRight);
-
-            Vector2 midpos1 = planeStart + (distRight * 0.1f * planeRight);
-            Vector2 midpos2 = planeStart + ((distForward * planeForward) + (distRight * 0.9f * planeRight));
+            Vector3 midpos1 = start + (distForward * billboardForward) + (fac1 * distRight * billboardRight);
+            Vector3 midpos2 = start + (distForward * billboardForward) + (fac2 * distRight * billboardRight) + (distUp * billboardUp);
 
             Vector3[] poss = new Vector3[]
             {
                 start,
-                new(midpos1.x, start.y, midpos1.y),
-                new(midpos2.x, end.y, midpos2.y),
+                midpos1,
+                midpos2,
                 end,
             };
 
