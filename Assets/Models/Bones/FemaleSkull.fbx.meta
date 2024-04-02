@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Skull
     second: {fileID: 2100000, guid: fd6efee629178744f830d1a1e851516b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tooth
+    second: {fileID: 2100000, guid: fd6efee629178744f830d1a1e851516b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
