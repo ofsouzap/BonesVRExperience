@@ -7,17 +7,17 @@ public class Hand : MonoBehaviour
     protected Animator Animator => _animator;
 
     private const string AnimParamThumbVal = "ThumbVal";
-    private const string AnimParamIndexVal = "IndexVal";
-    private const string AnimParamOtherFingersVal = "OtherFingersVal";
+    private const string AnimParamTriggerVal = "TriggerVal";
+    private const string AnimParamGripVal = "GripVal";
 
     [SerializeField] private InputActionReference _thumbValAction;
     protected InputAction ThumbValAction => _thumbValAction.action;
 
-    [SerializeField] private InputActionReference _indexValAction;
-    protected InputAction IndexValAction => _indexValAction.action;
+    [SerializeField] private InputActionReference _triggerValAction;
+    protected InputAction TriggerValAction => _triggerValAction.action;
 
-    [SerializeField] private InputActionReference _otherFingersValAction;
-    protected InputAction OtherFingersValAction => _otherFingersValAction.action;
+    [SerializeField] private InputActionReference _gripValAction;
+    protected InputAction GripValAction => _gripValAction.action;
 
     protected virtual void Awake()
     {
@@ -30,7 +30,7 @@ public class Hand : MonoBehaviour
     protected virtual void Update()
     {
         Animator.SetFloat(AnimParamThumbVal, ThumbValAction.ReadValue<float>());
-        Animator.SetFloat(AnimParamIndexVal, IndexValAction.ReadValue<float>());
-        Animator.SetFloat(AnimParamOtherFingersVal, OtherFingersValAction.ReadValue<float>());
+        Animator.SetFloat(AnimParamTriggerVal, TriggerValAction.ReadValue<float>());
+        Animator.SetFloat(AnimParamGripVal, GripValAction.ReadValue<float>());
     }
 }
