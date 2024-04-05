@@ -233,8 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActionAssets:
-  - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: -944628639613478452, guid: 4910cfde71c5c8a4abf76f3dc03daebb, type: 3}
+  - {fileID: -944628639613478452, guid: 94fa09090a0301b418be52c795cd9eae, type: 3}
 --- !u!4 &313935806
 Transform:
   m_ObjectHideFlags: 0
@@ -374,21 +373,21 @@ MonoBehaviour:
   m_EnableXRInput: 1
   m_EnableMouseInput: 1
   m_EnableTouchInput: 1
-  m_PointAction: {fileID: 2869410428622933342, guid: c348712bda248c246b8c49b3db54643f,
+  m_PointAction: {fileID: 2641706699262724704, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
-  m_LeftClickAction: {fileID: 1855836014308820768, guid: c348712bda248c246b8c49b3db54643f,
+  m_LeftClickAction: {fileID: -3669662159894855709, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
-  m_MiddleClickAction: {fileID: -6289560987278519447, guid: c348712bda248c246b8c49b3db54643f,
+  m_MiddleClickAction: {fileID: 7987087824976752269, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
-  m_RightClickAction: {fileID: -2562941478296515153, guid: c348712bda248c246b8c49b3db54643f,
+  m_RightClickAction: {fileID: 7575385109456876359, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
-  m_ScrollWheelAction: {fileID: 5825226938762934180, guid: c348712bda248c246b8c49b3db54643f,
+  m_ScrollWheelAction: {fileID: -5638388644227615118, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
-  m_NavigateAction: {fileID: -7967456002180160679, guid: c348712bda248c246b8c49b3db54643f,
+  m_NavigateAction: {fileID: 4526426360856913688, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
-  m_SubmitAction: {fileID: 3994978066732806534, guid: c348712bda248c246b8c49b3db54643f,
+  m_SubmitAction: {fileID: -2003560464664189734, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
-  m_CancelAction: {fileID: 2387711382375263438, guid: c348712bda248c246b8c49b3db54643f,
+  m_CancelAction: {fileID: -4644468813206692298, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
   m_EnableBuiltinActionsAsFallback: 1
   m_EnableGamepadInput: 1

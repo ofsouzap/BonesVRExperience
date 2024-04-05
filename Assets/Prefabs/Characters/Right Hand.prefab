@@ -47,11 +47,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8613247946217010102}
-  _thumbValAction: {fileID: -7112903740395420586, guid: 4910cfde71c5c8a4abf76f3dc03daebb,
+  _thumbTouchedAction: {fileID: 3910702396079112509, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
-  _triggerValAction: {fileID: 3960221948817079921, guid: 4910cfde71c5c8a4abf76f3dc03daebb,
+  _triggerTouchedAction: {fileID: -8053833879459445122, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
-  _gripValAction: {fileID: -9169028621434070342, guid: 4910cfde71c5c8a4abf76f3dc03daebb,
+  _gripTouchedAction: {fileID: -8053833879459445122, guid: 94fa09090a0301b418be52c795cd9eae,
+    type: 3}
+  _thumbValAction: {fileID: 6618247496569027047, guid: 94fa09090a0301b418be52c795cd9eae,
+    type: 3}
+  _triggerValAction: {fileID: 8428488131338899481, guid: 94fa09090a0301b418be52c795cd9eae,
+    type: 3}
+  _gripValAction: {fileID: 2920611862196009454, guid: 94fa09090a0301b418be52c795cd9eae,
     type: 3}
 --- !u!1001 &2802069059764489767
 PrefabInstance:
