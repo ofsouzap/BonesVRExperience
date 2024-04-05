@@ -306,28 +306,10 @@
             "id": "9bccbcb4-9901-4853-9e9b-370ee4431026",
             "actions": [
                 {
-                    "name": "Haptic Device",
-                    "type": "PassThrough",
-                    "id": "626f2e5e-b581-460b-89fd-ce1c48e8d357",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Tracking State",
+                    "name": "Position",
                     "type": "Value",
-                    "id": "fbaa75a6-df41-400b-b060-feb93d465ba4",
-                    "expectedControlType": "Integer",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Is Tracked",
-                    "type": "Button",
-                    "id": "e0a5363b-51db-4e4c-955f-75e12d422cf7",
-                    "expectedControlType": "Button",
+                    "id": "afc43417-68d1-482b-8a83-93bea160b66d",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -342,16 +324,178 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Position",
+                    "name": "Is Tracked",
+                    "type": "Button",
+                    "id": "e0a5363b-51db-4e4c-955f-75e12d422cf7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Tracking State",
                     "type": "Value",
-                    "id": "afc43417-68d1-482b-8a83-93bea160b66d",
-                    "expectedControlType": "Vector3",
+                    "id": "fbaa75a6-df41-400b-b060-feb93d465ba4",
+                    "expectedControlType": "Integer",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Haptic Device",
+                    "type": "PassThrough",
+                    "id": "626f2e5e-b581-460b-89fd-ce1c48e8d357",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Thumb Value",
+                    "type": "Value",
+                    "id": "7894d502-2929-43b7-a9a4-b2c2eaf425b7",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Trigger Value",
+                    "type": "Value",
+                    "id": "7a358d1e-8453-459d-931d-0b5171146374",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Grip Value",
+                    "type": "Value",
+                    "id": "dc1583c7-d501-4591-82fa-f0ef225c95a4",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Thumb Touched",
+                    "type": "Value",
+                    "id": "e66b0e5e-aa88-4020-8ddc-4cb9c2fdb309",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Trigger Touched",
+                    "type": "Value",
+                    "id": "8ca8fd57-8245-4f73-924e-ff3cadc484dc",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "fd8fa875-ea7a-4ad3-b707-06ffbec1595a",
+                    "path": "<XRController>{LeftHand}/*",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Haptic Device",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "987fa1f6-aade-4624-ac47-f51fa5a3ec3c",
+                    "path": "<XRController>{LeftHand}/triggerTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Trigger Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd3a5aba-6f54-4aea-a40a-2a334f0ed363",
+                    "path": "<XRController>{LeftHand}/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Trigger Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a128f014-6644-4028-9b24-2380a1de285b",
+                    "path": "<XRController>{LeftHand}/thumbstickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Thumb Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e535054-3d4e-40c2-976f-136e9a301e18",
+                    "path": "<XRController>{LeftHand}/grip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Grip Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5396b287-7975-4f82-8a0c-772a1e0708a5",
+                    "path": "<XRController>{LeftHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Thumb Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86ee20aa-bc08-4cd8-af1b-96fb228f4afe",
+                    "path": "<XRController>{LeftHand}/thumbrestTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Thumb Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "caae30aa-04d1-4d9c-892f-b143e1ce5720",
+                    "path": "<XRController>{LeftHand}/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Thumb Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e7fb581-88ed-4c36-9d0f-81318475b1be",
+                    "path": "<XRController>{LeftHand}/secondaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Thumb Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "Vector 3 Fallback",
                     "id": "1693c9eb-d1c6-4b2e-aae9-99e5b427330f",
@@ -481,17 +625,6 @@
                     "processors": "",
                     "groups": "Main",
                     "action": "Tracking State",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fd8fa875-ea7a-4ad3-b707-06ffbec1595a",
-                    "path": "<XRController>{LeftHand}/*",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Main",
-                    "action": "Haptic Device",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -773,6 +906,39 @@
                     "name": "",
                     "id": "7f2f9395-2002-46b6-aab1-47d639e5a479",
                     "path": "<XRController>{RightHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Thumb Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd69d0c1-c675-4a2e-a40b-36f48db737a5",
+                    "path": "<XRController>{RightHand}/thumbrestTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Thumb Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bfd69a6c-944f-4947-be0a-8a2094b27b10",
+                    "path": "<XRController>{RightHand}/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Thumb Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fa1e7217-33a6-434f-ab06-10a4915aadcf",
+                    "path": "<XRController>{RightHand}/secondaryTouch",
                     "interactions": "",
                     "processors": "",
                     "groups": "Main",
