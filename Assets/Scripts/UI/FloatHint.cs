@@ -1,8 +1,7 @@
-﻿using BonesVr.Ui;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-namespace BonesVr.UI
+namespace BonesVr.Ui
 {
     public class FloatHint : MonoBehaviour
     {
