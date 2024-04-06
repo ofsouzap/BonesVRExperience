@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Linq;
+using TMPro;
 using UnityEngine;
 
 namespace BonesVr.Ui
@@ -75,21 +76,45 @@ namespace BonesVr.Ui
 
         private void RefreshLinePositions()
         {
-            Vector3[] poss = CalcLinePositions(Target.transform.position, UiCanvas.transform.position, Camera.main.transform.position);
+            Vector3 lineEnd = CalcLineEndPosition();
+            Vector3[] poss = CalcLinePositions(Target.transform.position, lineEnd);
             LineRenderer.SetPositions(poss);
             LineRenderer.positionCount = poss.Length;
         }
 
-        protected static Vector3[] CalcLinePositions(Vector3 start, Vector3 end, Vector3 camera)
+        private Vector3 CalcLineEndPosition()
+        {
+            Vector3 canvasPos = UiCanvas.transform.position;
+
+            RectTransform rectTransform = UiCanvas.GetComponent<RectTransform>();
+
+            float halfWidth = rectTransform.rect.width * rectTransform.localScale.x / 2;
+            float halfHeight = rectTransform.rect.height * rectTransform.localScale.y / 2;
+
+            Vector3 right = UiCanvas.transform.right;
+            Vector3 up = UiCanvas.transform.up;
+
+            Vector3 dir = (Target.transform.position - canvasPos).normalized;
+
+            float rightFac = Vector3.Dot(dir, right);
+            float upFac = Vector3.Dot(dir, up);
+
+            if (rightFac > 0f)
+                return canvasPos + (halfWidth * right);
+            else
+                return canvasPos - (halfWidth * right);
+        }
+
+        protected Vector3[] CalcLinePositions(Vector3 start, Vector3 end)
         {
             const float fac1 = 0.25f;
             const float fac2 = 0.75f;
 
             Vector3 displacement = end - start;
 
-            Vector3 billboardForward = (end - camera).normalized;
-            Vector3 billboardRight = Vector3.Cross(billboardForward, Vector3.up);
-            Vector3 billboardUp = Vector3.Cross(billboardRight, billboardForward);
+            Vector3 billboardForward = UiCanvas.transform.forward;
+            Vector3 billboardRight = UiCanvas.transform.right;
+            Vector3 billboardUp = UiCanvas.transform.up;
 
             float distForward = Vector3.Dot(displacement, billboardForward);
             float distRight = Vector3.Dot(displacement, billboardRight);
