@@ -22,9 +22,7 @@ namespace BonesVr.UI
         [SerializeField] private string _message;
         public string Message => _message;
 
-        [Tooltip("The position to display the text relative to the hint target")]
-        [SerializeField] private Vector2 _relativePos;
-        protected Vector2 RelativePos => _relativePos;
+        protected Vector2 TextRelativePos { get; private set; }
 
         public bool Shown { get; private set; }
 
@@ -42,10 +40,25 @@ namespace BonesVr.UI
             HideHint();
         }
 
+        protected virtual void Start()
+        {
+            TextRelativePos = new(
+                UiCanvas.transform.localPosition.x - Target.transform.localPosition.x,
+                UiCanvas.transform.localPosition.y - Target.transform.localPosition.y
+            );
+        }
+
         protected virtual void Update()
         {
             RefreshTextTransform();
             RefreshLinePositions();
+        }
+
+        protected virtual void OnValidate()
+        {
+            // Update text in text box as message is edited in this component's Inspector
+            if (Text != null && Message != null)
+                Text.text = Message;
         }
 
         private void RefreshTextTransform()
@@ -56,7 +69,7 @@ namespace BonesVr.UI
             Vector3 targetViewPlaneUp = Vector3.Cross(targetViewPlaneRight, cameraTargetDisp).normalized;
 
             UiCanvas.transform.SetPositionAndRotation(
-                Target.transform.position - (RelativePos.x * targetViewPlaneRight) + (RelativePos.y * targetViewPlaneUp),
+                Target.transform.position - (TextRelativePos.x * targetViewPlaneRight) + (TextRelativePos.y * targetViewPlaneUp),
                 Quaternion.LookRotation(UiCanvas.transform.position - camera.position)
             );
         }

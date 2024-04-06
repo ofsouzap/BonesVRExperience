@@ -104,7 +104,6 @@ MonoBehaviour:
   _uiCanvas: {fileID: 4299203206002523356}
   _text: {fileID: 8877241697605186812}
   _message: Square chin
-  _relativePos: {x: 0.3, y: 0.1}
 --- !u!1 &3662732365759674173
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,7 +653,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8192360859879741688}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}

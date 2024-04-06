@@ -1242,10 +1242,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2736140845819884905, guid: 1e31f21229032dc458cb550e14835726,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736140845819884905, guid: 1e31f21229032dc458cb550e14835726,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.1654
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736140845819884905, guid: 1e31f21229032dc458cb550e14835726,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0702
+      objectReference: {fileID: 0}
     - target: {fileID: 3450465852855103837, guid: 1e31f21229032dc458cb550e14835726,
         type: 3}
       propertyPath: m_Name
       value: Float Hint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299203206002523356, guid: 1e31f21229032dc458cb550e14835726,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5460244052997070713, guid: 1e31f21229032dc458cb550e14835726,
         type: 3}
