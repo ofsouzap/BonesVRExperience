@@ -107,6 +107,7 @@ namespace BonesVr.UI
         {
             ShowLine();
             ShowUiText();
+            Target.BeginShrinkTarget();
             Shown = true;
         }
 
@@ -114,6 +115,7 @@ namespace BonesVr.UI
         {
             HideLine();
             HideUiText();
+            Target.BeginGrowTarget();
             Shown = false;
         }
     }

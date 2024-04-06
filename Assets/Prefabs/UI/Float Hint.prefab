@@ -51,7 +51,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.4
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3450465852855103837
 GameObject:
@@ -387,6 +387,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec89cffd23ba5b449448b5e0a1adfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _visualModel: {fileID: 8854783285486858090}
+  _shrunkScale: 0.005
+  _shrinkDuration: 0.1
 --- !u!1 &6679960561139816022
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,13 +549,22 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.2619503
+        value: 1
+        inSlope: 2.41052
+        outSlope: 2.41052
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.18978111
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -709,7 +721,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2776209581748222982}
