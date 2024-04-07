@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BonesVr
+namespace BonesVr.Utils
 {
     public class InteractionActivatedAnimator : MonoBehaviour
     {

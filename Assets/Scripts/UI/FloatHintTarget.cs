@@ -9,7 +9,7 @@ namespace BonesVr.Ui
         [SerializeField] private GameObject _visualModel;
         public GameObject VisualModel => _visualModel;
 
-        private Vector3 visualModelInitialScales;
+        private Vector3 m_VisualModelInitialScales;
 
         [Header("Shrinking")]
 
@@ -24,7 +24,7 @@ namespace BonesVr.Ui
 
         private void Awake()
         {
-            visualModelInitialScales = VisualModel.transform.localScale;
+            m_VisualModelInitialScales = VisualModel.transform.localScale;
         }
 
         private Coroutine ShrinkCoroutine { get; set; } = null;
@@ -42,7 +42,7 @@ namespace BonesVr.Ui
             if (ShrinkCoroutine != null)
                 StopCoroutine(ShrinkCoroutine);
 
-            ShrinkCoroutine = StartCoroutine(TargetShrinkCoroutine_Run(visualModelInitialScales, ShrinkDuration));
+            ShrinkCoroutine = StartCoroutine(TargetShrinkCoroutine_Run(m_VisualModelInitialScales, ShrinkDuration));
         }
 
         private IEnumerator TargetShrinkCoroutine_Run(Vector3 endScales, float duration)
