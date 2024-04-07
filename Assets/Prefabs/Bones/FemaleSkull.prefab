@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5169042e70d6af2419bdbd5b5619386a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _associatedVolume: {fileID: 0}
+  _liveMinHeight: 0.25
   _respawnGracePeriod: 3
 --- !u!1 &1264585872828192677
 GameObject:

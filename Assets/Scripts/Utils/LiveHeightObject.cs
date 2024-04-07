@@ -1,25 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
-namespace BonesVr.Utils.LiveZone
+namespace BonesVr.Utils
 {
-    public class LiveZoneUser : MonoBehaviour
+    public class LiveHeightObject : MonoBehaviour
     {
-        [Tooltip("The live zone volume that this game object should stay within to avoid respawning")]
-        [SerializeField] private LiveZoneVolume _associatedVolume = null;
-        protected LiveZoneVolume AssociatedVolume => _associatedVolume;
+        [Tooltip("The minimum Y position that the transform should be at before looking to respawn")]
+        [SerializeField] private float _liveMinHeight = 0f;
+        protected float LiveMinHeight => _liveMinHeight;
 
-        [Tooltip("How long the game object can be outside of its live zone without having to respawn")]
+        [Tooltip("How long the game object can be below its live height without having to respawn")]
         [SerializeField] private float _respawnGracePeriod = 3f;
         protected float RespawnGracePeriod => _respawnGracePeriod;
 
         private Vector3 m_SpawnPos;
         private float? m_RespawnTimerStart;
-
-        protected virtual void Awake()
-        {
-            if (AssociatedVolume == null)
-                Debug.LogWarning("No associated live zone volume has been set");
-        }
 
         protected virtual void Start()
         {
@@ -30,8 +25,14 @@ namespace BonesVr.Utils.LiveZone
         protected virtual void Update()
         {
             if (m_RespawnTimerStart != null)
+            {
                 if (Time.time > m_RespawnTimerStart + RespawnGracePeriod)
                     Respawn();
+            }
+            else if (CheckReadyToRespawn())
+                StartRespawnTimer();
+            else
+                StopRespawnTimer();
         }
 
         protected virtual void OnValidate()
@@ -43,8 +44,7 @@ namespace BonesVr.Utils.LiveZone
 
         protected void Respawn()
         {
-            m_RespawnTimerStart = null; // This should actually be done automatically as this counts as re-entering the trigger zone but this is just in case
-            print($"Cleared timer for {gameObject.name}");
+            m_RespawnTimerStart = null; // This should actually be done automatically as this counts as re-entering the live height region but this is just in case
 
             transform.position = m_SpawnPos;
 
@@ -55,28 +55,27 @@ namespace BonesVr.Utils.LiveZone
             }
         }
 
-        public void ExitedLiveZoneVolume(LiveZoneVolume liveZoneVolume)
+        protected bool IsAHeldXrInteractable()
         {
-            if (liveZoneVolume == AssociatedVolume)
-                StartRespawnTimer();
+            XRBaseInteractable interactable = GetComponentInChildren<XRBaseInteractable>();
+            return interactable != null && interactable.isSelected;
         }
 
-        public void EnteredLiveZoneVolume(LiveZoneVolume liveZoneVolume)
-        {
-            if (liveZoneVolume == AssociatedVolume)
-                StopRespawnTimer();
-        }
+        /// <summary>
+        /// Check if the game object is in a state where it should start its respawn timer, including checking its height.
+        /// </summary>
+        protected bool CheckReadyToRespawn()
+            => transform.position.y < LiveMinHeight
+            && !IsAHeldXrInteractable();
 
         protected void StartRespawnTimer()
         {
             m_RespawnTimerStart = Time.time;
-            print($"Started timer for {gameObject.name}");
         }
 
         protected void StopRespawnTimer()
         {
             m_RespawnTimerStart = null;
-            print($"Stopped timer for {gameObject.name}");
         }
     }
 }
