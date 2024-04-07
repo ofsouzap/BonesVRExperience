@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 1278977013070971016}
   - component: {fileID: 7084798984460815292}
   - component: {fileID: 9127274508212701165}
+  - component: {fileID: 9124294841813878602}
   m_Layer: 0
   m_Name: Metal Dish
   m_TagString: Untagged
@@ -263,6 +264,20 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &9124294841813878602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559393024401550563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5169042e70d6af2419bdbd5b5619386a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _associatedVolume: {fileID: 0}
+  _respawnGracePeriod: 3
 --- !u!1001 &4125316155613545469
 PrefabInstance:
   m_ObjectHideFlags: 0

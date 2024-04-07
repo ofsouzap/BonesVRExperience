@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 1182756488806357861}
   - component: {fileID: 4639612437677221002}
   - component: {fileID: 3323896904788384993}
+  - component: {fileID: 3063219447223239890}
   m_Layer: 0
   m_Name: Kelly Forceps
   m_TagString: Untagged
@@ -336,6 +337,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 5867156079669367341}
   _boolParamName: Closed
+--- !u!114 &3063219447223239890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302051179213321880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5169042e70d6af2419bdbd5b5619386a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _associatedVolume: {fileID: 0}
+  _respawnGracePeriod: 3
 --- !u!1 &5770799486662838162
 GameObject:
   m_ObjectHideFlags: 0

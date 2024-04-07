@@ -1473,6 +1473,7 @@ GameObject:
   - component: {fileID: 1434696616021682058}
   - component: {fileID: 2604025880260908364}
   - component: {fileID: 3848321727675400526}
+  - component: {fileID: 2875519190363102763}
   m_Layer: 0
   m_Name: FemaleMandible
   m_TagString: Untagged
@@ -1672,6 +1673,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2875519190363102763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557214635499669795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5169042e70d6af2419bdbd5b5619386a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _associatedVolume: {fileID: 0}
+  _respawnGracePeriod: 3
 --- !u!1 &8686640500608956369
 GameObject:
   m_ObjectHideFlags: 0
