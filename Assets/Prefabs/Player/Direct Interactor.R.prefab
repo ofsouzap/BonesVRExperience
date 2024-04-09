@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4311125378135355925}
   - component: {fileID: 7418831067950220320}
   m_Layer: 0
-  m_Name: Direct Interactor
+  m_Name: Direct Interactor.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,5 +142,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
-  m_Center: {x: 0, y: -0.03, z: -0.05}
+  m_Radius: 0.075
+  m_Center: {x: -0.03, y: -0.03, z: -0.06}
