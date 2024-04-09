@@ -1,24 +1,33 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace BonesVr.Utils
+namespace BonesVr.Utils.LiveHeight
 {
     public class LiveHeightObject : MonoBehaviour
     {
+        private static readonly Color c_LiveHeightGizmoColor = new(0f, 0f, 1f);
+        private const float c_GizmoWidth = 1f;
+
         [Tooltip("The minimum Y position that the transform should be at before looking to respawn")]
         [SerializeField] private float _liveMinHeight = 0f;
         protected float LiveMinHeight => _liveMinHeight;
+
+        [Tooltip("Whether the object's rotation should also be reset when it is respawned")]
+        [SerializeField] private bool _resetRotation = true;
+        protected bool ResetRotation => _resetRotation;
 
         [Tooltip("How long the game object can be below its live height without having to respawn")]
         [SerializeField] private float _respawnGracePeriod = 3f;
         protected float RespawnGracePeriod => _respawnGracePeriod;
 
         private Vector3 m_SpawnPos;
+        private Quaternion m_SpawnRot;
         private float? m_RespawnTimerStart;
 
         protected virtual void Start()
         {
             m_SpawnPos = transform.position;
+            m_SpawnRot = transform.rotation;
             m_RespawnTimerStart = null;
         }
 
@@ -42,11 +51,24 @@ namespace BonesVr.Utils
                 Debug.LogError("Live zone user must have at least one collider in its or its childrens' game objects");
         }
 
+        protected virtual void OnDrawGizmosSelected()
+        {
+            // Draw a plane at the object's live height boundary
+            Gizmos.color = c_LiveHeightGizmoColor;
+            Gizmos.DrawCube(
+                new(transform.position.x, LiveMinHeight, transform.position.z),
+                new(c_GizmoWidth, 0f, c_GizmoWidth)
+            );
+        }
+
         protected void Respawn()
         {
             m_RespawnTimerStart = null; // This should actually be done automatically as this counts as re-entering the live height region but this is just in case
 
             transform.position = m_SpawnPos;
+
+            if (ResetRotation)
+                transform.rotation = m_SpawnRot;
 
             if (TryGetComponent<Rigidbody>(out var rb) && !rb.isKinematic)
             {
