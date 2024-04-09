@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 6444076214322772645}
   - component: {fileID: 5906600121802820723}
   - component: {fileID: 9215237767786617953}
-  - component: {fileID: 811050461156705063}
+  - component: {fileID: 5490926813736512787}
   m_Layer: 0
   m_Name: MaleMandible
   m_TagString: Untagged
@@ -1059,7 +1059,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &811050461156705063
+--- !u!114 &5490926813736512787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1068,11 +1068,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4343071527883150348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5169042e70d6af2419bdbd5b5619386a, type: 3}
+  m_Script: {fileID: 11500000, guid: 63a0ac5535c991743a95538d553c42a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _liveMinHeight: 0.25
+  _resetRotation: 1
   _respawnGracePeriod: 3
+  _liveMinHeight: 0
 --- !u!1 &6085111243234164980
 GameObject:
   m_ObjectHideFlags: 0

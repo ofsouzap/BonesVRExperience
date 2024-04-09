@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8608896175731122998}
   - component: {fileID: 5470812480826250561}
   - component: {fileID: 8992376103137807853}
-  - component: {fileID: 811313917096214583}
+  - component: {fileID: 5673593158872238179}
   m_Layer: 0
   m_Name: Test Tube
   m_TagString: Untagged
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &811313917096214583
+--- !u!114 &5673593158872238179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,11 +244,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2499121273599257913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5169042e70d6af2419bdbd5b5619386a, type: 3}
+  m_Script: {fileID: 11500000, guid: 63a0ac5535c991743a95538d553c42a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _liveMinHeight: 0.25
+  _resetRotation: 1
   _respawnGracePeriod: 3
+  _liveMinHeight: 0
 --- !u!1 &7478760963406181984
 GameObject:
   m_ObjectHideFlags: 0

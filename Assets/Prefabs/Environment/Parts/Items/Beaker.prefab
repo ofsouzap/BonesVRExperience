@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 2454672985548560439}
   - component: {fileID: 5175660250616486368}
   - component: {fileID: 2447471247849212994}
-  - component: {fileID: 1656854309538063292}
+  - component: {fileID: 4174982575438280867}
   m_Layer: 0
   m_Name: Beaker
   m_TagString: Untagged
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &1656854309538063292
+--- !u!114 &4174982575438280867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -474,11 +474,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6258235657438476918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5169042e70d6af2419bdbd5b5619386a, type: 3}
+  m_Script: {fileID: 11500000, guid: 63a0ac5535c991743a95538d553c42a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _liveMinHeight: 0.25
+  _resetRotation: 1
   _respawnGracePeriod: 3
+  _liveMinHeight: 0
 --- !u!1 &7474337175432329091
 GameObject:
   m_ObjectHideFlags: 0

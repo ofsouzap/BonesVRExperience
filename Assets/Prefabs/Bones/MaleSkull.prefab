@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 1725106720778772791}
   - component: {fileID: 8303658967694068679}
   - component: {fileID: 2696763050282641144}
-  - component: {fileID: 7613522866996677223}
+  - component: {fileID: 6979760082565389014}
   m_Layer: 0
   m_Name: MaleSkull
   m_TagString: Untagged
@@ -460,7 +460,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7613522866996677223
+--- !u!114 &6979760082565389014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -469,11 +469,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 620928861471661197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5169042e70d6af2419bdbd5b5619386a, type: 3}
+  m_Script: {fileID: 11500000, guid: 63a0ac5535c991743a95538d553c42a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _liveMinHeight: 0.25
+  _resetRotation: 1
   _respawnGracePeriod: 3
+  _liveMinHeight: 0
 --- !u!1 &2125617214429317700
 GameObject:
   m_ObjectHideFlags: 0

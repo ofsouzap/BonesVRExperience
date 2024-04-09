@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 4840696068789703006}
   - component: {fileID: 6704752653691704475}
   - component: {fileID: 3878052854962010897}
-  - component: {fileID: 4220899465795271006}
+  - component: {fileID: 2185827982834136388}
   m_Layer: 0
   m_Name: Thumb Forceps
   m_TagString: Untagged
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 3563268498700160080}
   _boolParamName: Closed
---- !u!114 &4220899465795271006
+--- !u!114 &2185827982834136388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,11 +312,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2427512181286919450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5169042e70d6af2419bdbd5b5619386a, type: 3}
+  m_Script: {fileID: 11500000, guid: 63a0ac5535c991743a95538d553c42a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _liveMinHeight: 0.25
+  _resetRotation: 1
   _respawnGracePeriod: 3
+  _liveMinHeight: 0
 --- !u!1001 &1860565570533477652
 PrefabInstance:
   m_ObjectHideFlags: 0

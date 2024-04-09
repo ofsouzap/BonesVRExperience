@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1216801441819390948}
   - component: {fileID: 8371831947653011732}
   - component: {fileID: 2485686475598165035}
-  - component: {fileID: 4552534149209767380}
+  - component: {fileID: 6418138313988630343}
   m_Layer: 0
   m_Name: FemaleSkull
   m_TagString: Untagged
@@ -294,7 +294,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4552534149209767380
+--- !u!114 &6418138313988630343
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,11 +303,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1121333191407685214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5169042e70d6af2419bdbd5b5619386a, type: 3}
+  m_Script: {fileID: 11500000, guid: 63a0ac5535c991743a95538d553c42a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _liveMinHeight: 0.25
+  _resetRotation: 1
   _respawnGracePeriod: 3
+  _liveMinHeight: 0
 --- !u!1 &1264585872828192677
 GameObject:
   m_ObjectHideFlags: 0
