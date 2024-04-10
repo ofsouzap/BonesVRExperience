@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 227398288128491634}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 375750231005357589}
   - component: {fileID: 9031134923642316930}
   - component: {fileID: 8219404187879520198}
-  - component: {fileID: 2543557844552551761}
+  - component: {fileID: 2255745095351989760}
   m_Layer: 0
   m_Name: Bone Arrangement Socket
   m_TagString: Untagged
@@ -186,10 +186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9117b1d2edf817748a2714bee8d7b259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gizmoMesh: {fileID: 0}
-  _gizmoRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
-  _gizmoScale: {x: 100, y: 100, z: 100}
---- !u!135 &2543557844552551761
+  _previewGizmoMesh: {fileID: 0}
+  _previewInteractableGameObject: {fileID: 0}
+  _previewGizmoPosition: {x: 0, y: 0, z: 0}
+  _previewGizmoRotation: {x: 0.70710677, y: 0, z: 0, w: -0.70710677}
+  _previewGizmoScale: {x: 100, y: 100, z: 100}
+--- !u!135 &2255745095351989760
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,7 +211,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.02, z: 0}
 --- !u!1 &7594527505340843394
 GameObject:
   m_ObjectHideFlags: 0
