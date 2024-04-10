@@ -15,6 +15,11 @@ namespace BonesVr.Minigames.Arrangement
         protected TRS InteractorTrs => Interactor.attachTransform != null ? InteractorAttachTrs : InteractorTransformTrs;
         protected Matrix4x4 InteractorTrsMat => TransformMatrices.FromTrs(InteractorTrs);
 
+        [Header("Slot")]
+
+        [SerializeField] private BoneType _correctBoneType = BoneType.Unknown;
+        public BoneType CorrectBoneType => _correctBoneType;
+
         [Header("Preview Gizmo")]
 
         [SerializeField] private Mesh _previewGizmoMesh;
@@ -58,6 +63,16 @@ namespace BonesVr.Minigames.Arrangement
         protected TRS GetPreviewGizmoTrs()
             => TransformMatrices.ToTrs(GetPreviewGizmoTrsMat());
 
+        protected virtual void OnEnable()
+        {
+            Interactor.selectEntered.AddListener(OnInteractorSelectEnter);
+        }
+
+        protected virtual void OnDisable()
+        {
+            Interactor.selectEntered.RemoveListener(OnInteractorSelectEnter);
+        }
+
         protected virtual void OnValidate()
         {
             if (_previewInteractableGameObject != null && GetPreviewInteractable() == null)
@@ -70,6 +85,21 @@ namespace BonesVr.Minigames.Arrangement
             {
                 TRS trs = GetPreviewGizmoTrs();
                 Gizmos.DrawWireMesh(PreviewGizmoMesh, trs.position, trs.rotation, trs.scale);
+            }
+        }
+
+        private void OnInteractorSelectEnter(SelectEnterEventArgs args)
+        {
+            if (args.interactableObject.transform.TryGetComponent<BoneArrangementBone>(out var bone))
+                OnBoneSelected(bone);
+        }
+
+        protected virtual void OnBoneSelected(BoneArrangementBone bone)
+        {
+            if (bone.Type == CorrectBoneType)
+            {
+                // TODO - this is where the correct bone has been selected. Can do something here
+                // TODO - this seems to be called repeatedly when the correct bone is in the slot, not just when it starts being selected. Might be a problem
             }
         }
     }

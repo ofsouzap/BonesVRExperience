@@ -4,7 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace BonesVr.Minigames.Arrangement
 {
     [RequireComponent(typeof(XRBaseInteractable))]
-    public class BoneArrangementBone : MonoBehaviour
+    public class BoneArrangementBone : Bone
     {
         public XRBaseInteractable Interactable => GetComponent<XRBaseInteractable>();
 
