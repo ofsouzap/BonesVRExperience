@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1120743890936310151}
   - component: {fileID: 481768479411841046}
   m_Layer: 0
-  m_Name: Humerus
+  m_Name: Left Humerus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
