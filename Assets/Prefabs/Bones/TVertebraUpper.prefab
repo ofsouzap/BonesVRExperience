@@ -125,6 +125,7 @@ Transform:
   m_Children:
   - {fileID: 6043421260173400904}
   - {fileID: 2550981787673201468}
+  - {fileID: 3505637015118288551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7677363640311071835
@@ -229,7 +230,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 3505637015118288551}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
@@ -317,6 +318,37 @@ MonoBehaviour:
   _resetRotation: 1
   _respawnGracePeriod: 3
   _liveMinHeight: 0
+--- !u!1 &5397418962947374038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3505637015118288551}
+  m_Layer: 0
+  m_Name: Attach Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3505637015118288551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397418962947374038}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.077094175, y: -0, z: -0, w: 0.9970238}
+  m_LocalPosition: {x: 0, y: -0.0221, z: -0.0115}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6806761653781353469}
+  m_LocalEulerAnglesHint: {x: -8.843, y: 0, z: 0}
 --- !u!1 &6265542785905629955
 GameObject:
   m_ObjectHideFlags: 0
