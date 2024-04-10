@@ -15,10 +15,6 @@ namespace BonesVr.Minigames.Arrangement
         protected TRS InteractorTrs => Interactor.attachTransform != null ? InteractorAttachTrs : InteractorTransformTrs;
         protected Matrix4x4 InteractorTrsMat => TransformMatrices.FromTrs(InteractorTrs);
 
-        //protected Vector3 InteractorAttachPosition => Interactor.attachTransform != null ? Interactor.attachTransform.position : transform.position;
-        //protected Quaternion InteractorAttachRotation => Interactor.attachTransform != null ? Interactor.attachTransform.rotation : transform.rotation;
-        //protected Vector3 InteractorAttachScale => Interactor.attachTransform != null ? Interactor.attachTransform.localScale : transform.localScale;
-
         [Header("Preview Gizmo")]
 
         [SerializeField] private Mesh _previewGizmoMesh;
@@ -55,51 +51,6 @@ namespace BonesVr.Minigames.Arrangement
                 return interactableMat * attachMat.inverse;
             }
         }
-
-        //protected Vector3 GetInteractableAttachPosition()
-        //{
-        //    XRGrabInteractable interactable = GetPreviewInteractable();
-
-        //    if (interactable == null || interactable.attachTransform == null)
-        //        return Vector3.zero;
-        //    else
-        //        return interactable.transform.position - interactable.attachTransform.position;
-
-        //}
-
-        //protected Quaternion GetInteractableAttachRotation()
-        //{
-        //    XRGrabInteractable interactable = GetPreviewInteractable();
-
-        //    if (interactable == null || interactable.attachTransform == null)
-        //        return Quaternion.identity;
-        //    else
-        //        return interactable.transform.rotation * Quaternion.Inverse(interactable.attachTransform.rotation);
-        //}
-
-        //protected Vector3 GetInteractableAttachScale()
-        //{
-        //    XRGrabInteractable interactable = GetPreviewInteractable();
-
-        //    if (interactable == null || interactable.attachTransform == null)
-        //        return Vector3.one;
-        //    else
-        //        return new(
-        //            interactable.transform.lossyScale.x / interactable.attachTransform.lossyScale.x,
-        //            interactable.transform.lossyScale.y / interactable.attachTransform.lossyScale.y,
-        //            interactable.transform.lossyScale.z / interactable.attachTransform.lossyScale.z
-        //        );
-        //}
-
-        //protected Vector3 GetGizmoPosition() => InteractorAttachPosition + GetInteractableAttachPosition() + _previewGizmoPosition;
-        //protected Quaternion GetGizmoRotation() => InteractorAttachRotation * GetInteractableAttachRotation() * _previewGizmoRotation;
-        //protected Vector3 GetGizmoScale()
-        //{
-        //    Vector3 scale = _previewGizmoScale;
-        //    scale.Scale(InteractorAttachScale);
-        //    scale.Scale(GetInteractableAttachScale());
-        //    return scale;
-        //}
 
         protected Matrix4x4 GetPreviewGizmoTrsMat()
             => InteractorTrsMat * GetPreviewInteractableAttachTrsMat() * GetGizmoExtraTrsMat();
