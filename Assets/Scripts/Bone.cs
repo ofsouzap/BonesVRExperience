@@ -4,14 +4,20 @@ namespace BonesVr
 {
     public enum BoneType
     {
-        Unknown, // This is only really so that I have a default option. It shouldn't every really be used
-        Skull,
-        Mandible,
-        LeftHumerus,
-        RightHumerus,
-        VertebraUpper,
-        VertebraMid,
-        VertebraLower,
+        // NOTE: When editing, so that the serialized fields in the Unity game objects aren't broken, don't ever reuse the enum indexes.
+        //       E.g. I added LeftRadius after RightHumerus so it has a greater enum index than it but I declare it first for neatness reasons.
+        Unknown = 0, // This is only really so that I have a default option. It shouldn't every really be used
+        Skull = 1,
+        Mandible = 2,
+        LeftHumerus = 3,
+        LeftRadius = 8,
+        LeftUlna = 9,
+        RightHumerus = 4,
+        RightRadius = 10,
+        RightUlna = 11,
+        VertebraUpper = 5,
+        VertebraMid = 6,
+        VertebraLower = 7,
     }
 
     public class Bone : MonoBehaviour
