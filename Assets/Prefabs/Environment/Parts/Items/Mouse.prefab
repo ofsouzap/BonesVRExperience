@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5579115338658218087}
   - component: {fileID: 2296501384790866343}
   - component: {fileID: 1451459709981951241}
+  - component: {fileID: 6939290925456852221}
   - component: {fileID: 7678007075250861558}
   m_Layer: 0
   m_Name: Mouse
@@ -131,10 +132,34 @@ MonoBehaviour:
       m_Calls: []
   m_Activated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6939290925456852221}
+        m_TargetAssemblyTypeName: BonesVr.Utils.InteractionActivatedAnimator, Assembly-CSharp
+        m_MethodName: EnableToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Deactivated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6939290925456852221}
+        m_TargetAssemblyTypeName: BonesVr.Utils.InteractionActivatedAnimator, Assembly-CSharp
+        m_MethodName: DisableToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
@@ -211,6 +236,20 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &6939290925456852221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532151278307594686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b92a234bfd11943856145efdc5ab2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 13467293051657216}
+  _boolParamName: LeftButtonPressed
 --- !u!114 &7678007075250861558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,8 +385,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2292491fec3ceec44a156f0203d677e5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 13467293051657216}
   m_SourcePrefab: {fileID: 100100000, guid: 2292491fec3ceec44a156f0203d677e5, type: 3}
+--- !u!1 &1261234456633356360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2292491fec3ceec44a156f0203d677e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2108150679793044761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &13467293051657216
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261234456633356360}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd5db12e1e3605a4bbaed289af37f491, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1930670549825841906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2292491fec3ceec44a156f0203d677e5,
