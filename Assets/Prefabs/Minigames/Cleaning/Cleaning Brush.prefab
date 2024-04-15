@@ -512,6 +512,7 @@ MonoBehaviour:
   _cleanRange: 5
   _minimumCleanSpeed: 0
   _cleanActionDelay: 1
+  _cleanUvTargetMaxVertCheckCount: 40
   _cleanTexRange: 0.1
 --- !u!1 &8816557876651629225
 GameObject:

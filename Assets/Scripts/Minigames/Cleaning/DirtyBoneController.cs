@@ -2,13 +2,12 @@
 
 namespace BonesVr.Minigames.Cleaning
 {
-    public class DirtyBoneShaderController : MonoBehaviour
+    public class DirtyBoneController : MonoBehaviour
     {
         [SerializeField] private int _dirtinessTextureSize = 512;
         public int DirtinessTextureSize => _dirtinessTextureSize;
 
-        private readonly int _dirtinessTextureSizeSqr;
-        public int DirtinessTextureSizeSqr => _dirtinessTextureSizeSqr;
+        public int DirtinessTextureSizeSqr => DirtinessTextureSize * DirtinessTextureSize;
 
         [SerializeField] private MeshRenderer _meshRenderer;
         public MeshRenderer MeshRenderer => _meshRenderer;
@@ -16,11 +15,6 @@ namespace BonesVr.Minigames.Cleaning
         public MeshFilter MeshFilter => MeshRenderer.gameObject.GetComponent<MeshFilter>();
 
         private Texture2D m_DirtinessTexture;
-
-        public DirtyBoneShaderController() : base()
-        {
-            _dirtinessTextureSizeSqr = _dirtinessTextureSize * _dirtinessTextureSize;
-        }
 
         protected static Color32 DirtinessValueToTexCol(float dirtinessValue)
         {

@@ -32,6 +32,11 @@ namespace BonesVr.Minigames.Cleaning
 
         [Header("Clean Effect Configuration")]
 
+        [Tooltip("The maximum number of vertices to check when trying to approximate the UV coordinate of where to clean the target object")]
+        [Min(1)]
+        [SerializeField] private int _cleanUvTargetMaxVertCheckCount;
+        protected int CleanUvTargetMaxVertCheckCount => _cleanUvTargetMaxVertCheckCount;
+
         [Tooltip("The range, in UV coordinates, of the area to clean on the target's dirtiness texture")]
         [Min(0f)]
         [SerializeField] private float _cleanTexRange;
@@ -66,21 +71,22 @@ namespace BonesVr.Minigames.Cleaning
 
             if (Physics.Raycast(CleaningOrigin.position, CleaningOrigin.forward, out var hit, CleanRange))
             {
-
-                print($"hit {hit.transform.name}");
-                var dirtController = hit.transform.GetComponentInParent<DirtyBoneShaderController>();
+                var dirtController = hit.transform.GetComponentInParent<DirtyBoneController>();
 
                 if (dirtController != null)
                 {
-                    print("has dirt controller");
                     Vector3 hitPos = hit.point;
                     Vector3 objectSpaceHitPos = dirtController.MeshFilter.transform.InverseTransformPoint(hitPos);
                     Mesh mesh = dirtController.MeshFilter.sharedMesh;
 
                     // Find the index of the closest vertex to the hit point (in object space)
+
+                    int idxStep = mesh.vertices.Length / CleanUvTargetMaxVertCheckCount;
+
                     float minSqrDist = Mathf.Infinity;
                     int minVertIdx = 0;
-                    for (int i = 0; i < mesh.vertices.Length; i++)
+
+                    for (int i = 0; i < mesh.vertices.Length; i += idxStep)
                     {
                         Vector3 vert = mesh.vertices[i];
                         float sqrDist = (vert - objectSpaceHitPos).sqrMagnitude;
@@ -94,7 +100,6 @@ namespace BonesVr.Minigames.Cleaning
                     Vector2 uv = mesh.uv[minVertIdx];
                     float u = uv.x;
                     float v = uv.y;
-                    print($"({u}, {v})");
 
                     dirtController.DrawCircle(0f, u, v, CleanTexRange);
                 }
