@@ -18,6 +18,8 @@ namespace BonesVr
         VertebraUpper = 5,
         VertebraMid = 6,
         VertebraLower = 7,
+        LeftFemur = 12,
+        RightFemur = 13,
     }
 
     public class Bone : MonoBehaviour
