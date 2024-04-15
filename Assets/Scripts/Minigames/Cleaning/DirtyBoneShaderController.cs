@@ -10,8 +10,10 @@ namespace BonesVr.Minigames.Cleaning
         private readonly int _dirtinessTextureSizeSqr;
         public int DirtinessTextureSizeSqr => _dirtinessTextureSizeSqr;
 
-        [SerializeField] private Renderer _renderer;
-        protected Renderer Renderer => _renderer;
+        [SerializeField] private MeshRenderer _meshRenderer;
+        public MeshRenderer MeshRenderer => _meshRenderer;
+
+        public MeshFilter MeshFilter => MeshRenderer.gameObject.GetComponent<MeshFilter>();
 
         private Texture2D m_DirtinessTexture;
 
@@ -28,9 +30,9 @@ namespace BonesVr.Minigames.Cleaning
 
         protected virtual void Awake()
         {
-            if (Renderer == null)
-                _renderer = GetComponentInChildren<Renderer>();
-            if (Renderer == null)
+            if (MeshRenderer == null)
+                _meshRenderer = GetComponentInChildren<MeshRenderer>();
+            if (MeshRenderer == null)
                 Debug.LogError("No renderer component set or found");
 
             m_DirtinessTexture = new(DirtinessTextureSize, DirtinessTextureSize, TextureFormat.RGB24, false);
@@ -39,7 +41,13 @@ namespace BonesVr.Minigames.Cleaning
 
         protected virtual void Start()
         {
-            Renderer.material.SetTexture("_DirtinessTexture", m_DirtinessTexture);
+            MeshRenderer.material.SetTexture("_DirtinessTexture", m_DirtinessTexture);
+        }
+
+        protected virtual void OnValidate()
+        {
+            if (_meshRenderer != null && _meshRenderer.gameObject.GetComponent<MeshFilter>() == null)
+                Debug.LogError("Mesh renderer doesn't have a mesh filter attached");
         }
 
         public void DrawCircle(float dirtiness, float centerU, float centerV, float radius, bool applyChanges = true)
@@ -48,22 +56,32 @@ namespace BonesVr.Minigames.Cleaning
 
             int centerX = Mathf.FloorToInt(DirtinessTextureSize * centerU);
             int centerY = Mathf.FloorToInt(DirtinessTextureSize * centerV);
-
             int radiusPix = Mathf.FloorToInt(DirtinessTextureSize * radius);
+
             int radiusPixSqr = radiusPix * radiusPix;
 
-            for (int dy = -radiusPix; dy <= radiusPix; dy++)
-            {
-                int dySqr = dy * dy;
-                int xRange = Mathf.RoundToInt(Mathf.Sqrt(radiusPixSqr - dySqr));
+            int yMin = Mathf.Clamp(centerY - radiusPix, 0, DirtinessTextureSize - 1);
+            int yMax = Mathf.Clamp(centerY + radiusPix, 0, DirtinessTextureSize - 1);
 
-                Color32[] arr = new Color32[(2 * xRange) + 1];
+            for (int y = yMin + 1; y < yMax; y++) // (Don't include endpoints as they result in drawing 0 pixels)
+            {
+                int dy = y - centerY;
+                int dySqr = dy * dy;
+
+                int xHalfRangeMaximum = Mathf.RoundToInt(Mathf.Sqrt(radiusPixSqr - dySqr));
+
+                int xMin = Mathf.Clamp(centerX - xHalfRangeMaximum, 0, DirtinessTextureSize - 1);
+                int xMax = Mathf.Clamp(centerX + xHalfRangeMaximum, 0, DirtinessTextureSize - 1);
+
+                int xRangeTrue = xMax - xMin;
+
+                Color32[] arr = new Color32[xRangeTrue];
                 for (int i = 0; i < arr.Length; i++) arr[i] = col;
 
                 m_DirtinessTexture.SetPixels32(
-                    centerX - xRange,
-                    centerY + dy,
-                    (2 * xRange) + 1,
+                    xMin,
+                    y,
+                    xRangeTrue,
                     1,
                     arr
                 );
