@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using BonesVr.Utils;
+using System.Linq;
+using UnityEngine;
 
 namespace BonesVr.Minigames.Cleaning
 {
@@ -13,6 +15,15 @@ namespace BonesVr.Minigames.Cleaning
         public MeshRenderer MeshRenderer => _meshRenderer;
 
         public MeshFilter MeshFilter => MeshRenderer.gameObject.GetComponent<MeshFilter>();
+
+        [Header("Initial Random Dirt")]
+
+        [SerializeField] private int _initialRandomDirtSpotsCount;
+        protected int InitialRandomDirtSpotsCount => _initialRandomDirtSpotsCount;
+
+        [Tooltip("The standard deviation of the Gaussian distribution used to set the initial random dirt spots on the dirtiness texture. This value is in normalised UV coordinates")]
+        [SerializeField] private float _initialRandomDirtFac;
+        protected float InitialRandomDirtFac => _initialRandomDirtFac;
 
         private float m_BaseDirtiness;
         private Texture2D m_DirtinessTexture;
@@ -39,6 +50,8 @@ namespace BonesVr.Minigames.Cleaning
         {
             MeshRenderer.material.SetTexture("_DirtinessTexture", m_DirtinessTexture);
             UpdateBaseDirtiness();
+
+            DrawRandomDirtSpots(InitialRandomDirtSpotsCount, InitialRandomDirtFac, applyChanges: true);
         }
 
         protected virtual void OnValidate()
@@ -96,7 +109,7 @@ namespace BonesVr.Minigames.Cleaning
             }
 
             if (applyChanges)
-                m_DirtinessTexture.Apply();
+                DrawApply();
         }
 
         public void DrawFill(float dirtiness, bool applyChanges = true)
@@ -109,7 +122,48 @@ namespace BonesVr.Minigames.Cleaning
             m_DirtinessTexture.SetPixels32(arr);
 
             if (applyChanges)
-                m_DirtinessTexture.Apply();
+                DrawApply();
+        }
+
+        protected void DrawRandomDirtSpots(int spotCount, float stdNormalised, bool applyChanges = true)
+        {
+            float std = stdNormalised * DirtinessTextureSize;
+            float variance = std * std;
+
+            float[] buf = new float[DirtinessTextureSizeSqr];
+
+            foreach (var _ in Enumerable.Range(0, spotCount))
+            {
+                int centerX = Random.Range(0, DirtinessTextureSize);
+                int centerY = Random.Range(0, DirtinessTextureSize);
+
+                int maxRange = Mathf.RoundToInt(4 * std); // Enough of the bell curve is captured in this range
+
+                for (int xRaw = centerX - maxRange; xRaw < centerX + maxRange; xRaw++)
+                    for (int yRaw = centerY - maxRange; yRaw < centerY + maxRange; yRaw++)
+                    {
+                        // Wrap the coordinates
+                        int x = MathUtils.WrapInt(xRaw, DirtinessTextureSize);
+                        int y = MathUtils.WrapInt(yRaw, DirtinessTextureSize);
+
+                        float r = Mathf.Sqrt(Mathf.Pow(x - centerX, 2) + Mathf.Pow(y - centerY, 2)); // Distance from center
+
+                        int i = (y * DirtinessTextureSize) + x; // Index in the buffer
+
+                        float k = Mathf.Exp(-(r * r) / (2 * variance)); // The factor of the spot at the point, based on the Gaussian bell curve
+
+                        buf[i] = Mathf.Clamp01(buf[i] + k); // Draw the value on
+                    }
+            }
+
+            m_DirtinessTexture.SetPixels32(
+                buf
+                .Select(DirtinessValueToTexCol)
+                .ToArray()
+            );
+
+            if (applyChanges)
+                DrawApply();
         }
 
         public void DrawApply()
