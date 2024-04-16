@@ -471,6 +471,8 @@ MonoBehaviour:
   _minimumCleanSpeed: 0.5
   _cleanActionDelay: 0.3
   _cleanDirtinessChange: 0.1
+  _dustParticlesFxPrefab: {fileID: 4839365313039726979, guid: 0a0f804f4e6a7a648801bdabdebff8f8,
+    type: 3}
 --- !u!1 &8143373880937306643
 GameObject:
   m_ObjectHideFlags: 0

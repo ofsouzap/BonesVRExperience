@@ -32,6 +32,11 @@ namespace BonesVr.Minigames.Cleaning
         [SerializeField] private float _cleanDirtinessChange;
         protected float CleanDirtinessChange => _cleanDirtinessChange;
 
+        [Header("Cleaning FX")]
+
+        [SerializeField] private GameObject _dustParticlesFxPrefab;
+        protected GameObject DustParticlesFxPrefab => _dustParticlesFxPrefab;
+
         private float? m_LastCleanActionTime;
 
         protected virtual void Start()
@@ -49,6 +54,12 @@ namespace BonesVr.Minigames.Cleaning
             TriggerController.DirtyBoneEnteredTrigger.RemoveListener(TryClean);
         }
 
+        protected virtual void OnValidate()
+        {
+            if (!DustParticlesFxPrefab.TryGetComponent<DirtParticleSprayController>(out var _))
+                Debug.LogError("Dust particles FX prefab has no dirt particle spray controller");
+        }
+
         protected void TryClean(DirtyBoneController dirtyBone)
         {
             if (CheckCanClean())
@@ -62,7 +73,22 @@ namespace BonesVr.Minigames.Cleaning
         protected void PerformCleanAction(DirtyBoneController dirtyBone)
         {
             m_LastCleanActionTime = Time.time;
+
+            if (dirtyBone.GetDirtiness() > 0)
+                SpawnCleaningFxPrefab(dirtyBone);
+
             dirtyBone.ChangeDirtiness(-CleanDirtinessChange);
+        }
+
+        protected void SpawnCleaningFxPrefab(DirtyBoneController dirtyBone)
+        {
+            GameObject spawned = Instantiate(DustParticlesFxPrefab, dirtyBone.transform.position, dirtyBone.transform.rotation);
+            if (spawned.TryGetComponent<DirtParticleSprayController>(out var particlesController))
+            {
+                particlesController.SetConfig(new DirtParticleSprayController.Config());
+            }
+            else
+                Debug.LogWarning("No dirt particle spary controller");
         }
     }
 }
