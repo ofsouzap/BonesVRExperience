@@ -175,6 +175,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8028676978628694740}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &541290924
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7815960341358441641, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.235
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815960341358441641, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.778
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815960341358441641, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.116
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815960341358441641, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5542439
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815960341358441641, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815960341358441641, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.83235437
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815960341358441641, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815960341358441641, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815960341358441641, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -112.683
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815960341358441641, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294199410587584787, guid: 08ba0631245c2c24ba961b60903861ba,
+        type: 3}
+      propertyPath: m_Name
+      value: FemaleSkull - Cracked
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 08ba0631245c2c24ba961b60903861ba, type: 3}
 --- !u!1 &547173177
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,3 +893,4 @@ SceneRoots:
   - {fileID: 313935806}
   - {fileID: 547173178}
   - {fileID: 3806475053170046398}
+  - {fileID: 541290924}
