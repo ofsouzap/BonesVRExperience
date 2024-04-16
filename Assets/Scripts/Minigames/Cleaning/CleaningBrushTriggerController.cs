@@ -8,7 +8,7 @@ namespace BonesVr.Minigames.Cleaning
     {
         protected Collider Collider => GetComponent<Collider>();
 
-        public UnityEvent<DirtyBoneController, Vector3> DirtyBoneEnteredTrigger = new();
+        public UnityEvent<DirtyBoneController> DirtyBoneEnteredTrigger = new();
 
         protected virtual void OnValidate()
         {
@@ -23,10 +23,7 @@ namespace BonesVr.Minigames.Cleaning
         {
             DirtyBoneController dirtyBone = other.GetComponentInParent<DirtyBoneController>();
             if (dirtyBone != null)
-            {
-                Vector3 point = other.ClosestPoint(transform.position);
-                DirtyBoneEnteredTrigger.Invoke(dirtyBone, point);
-            }
+                DirtyBoneEnteredTrigger.Invoke(dirtyBone);
         }
     }
 }

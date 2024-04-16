@@ -97,8 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dirtinessTextureSize: 512
   _meshRenderer: {fileID: 7490993785953079101}
-  _initialRandomDirtSpotsCount: 5
-  _initialRandomDirtFac: 0.1
+  _initialDirtiness: 1
 --- !u!23 &7490993785953079101 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5803502672130999035, guid: 6de5f33c42e82c94892a74973da8738d,
