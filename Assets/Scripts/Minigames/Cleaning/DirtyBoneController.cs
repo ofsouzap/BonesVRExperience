@@ -14,6 +14,7 @@ namespace BonesVr.Minigames.Cleaning
 
         public MeshFilter MeshFilter => MeshRenderer.gameObject.GetComponent<MeshFilter>();
 
+        private float m_BaseDirtiness;
         private Texture2D m_DirtinessTexture;
 
         protected static Color32 DirtinessValueToTexCol(float dirtinessValue)
@@ -31,17 +32,30 @@ namespace BonesVr.Minigames.Cleaning
 
             m_DirtinessTexture = new(DirtinessTextureSize, DirtinessTextureSize, TextureFormat.RGB24, false);
             DrawFill(1f);
+            m_BaseDirtiness = 1f;
         }
 
         protected virtual void Start()
         {
             MeshRenderer.material.SetTexture("_DirtinessTexture", m_DirtinessTexture);
+            UpdateBaseDirtiness();
         }
 
         protected virtual void OnValidate()
         {
             if (_meshRenderer != null && _meshRenderer.gameObject.GetComponent<MeshFilter>() == null)
                 Debug.LogError("Mesh renderer doesn't have a mesh filter attached");
+        }
+
+        protected void UpdateBaseDirtiness()
+        {
+            MeshRenderer.material.SetFloat("_BaseDirtiness", m_BaseDirtiness);
+        }
+
+        public void ChangeBaseDirtiness(float amount)
+        {
+            m_BaseDirtiness = Mathf.Clamp01(m_BaseDirtiness + amount);
+            UpdateBaseDirtiness();
         }
 
         public void DrawCircle(float dirtiness, float centerU, float centerV, float radius, bool applyChanges = true)

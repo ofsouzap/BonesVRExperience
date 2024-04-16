@@ -468,11 +468,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerController: {fileID: 188032837421302833}
-  _cleanRange: 0.06
   _minimumCleanSpeed: 0.5
   _cleanActionDelay: 0.3
   _cleanUvTargetMaxVertCheckCount: 40
-  _cleanTexRange: 0.1
+  _cleanTexRange: 0.15
+  _cleanBaseDirtinessChange: 0.1
 --- !u!1 &8143373880937306643
 GameObject:
   m_ObjectHideFlags: 0

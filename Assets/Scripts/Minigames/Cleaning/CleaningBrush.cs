@@ -37,6 +37,11 @@ namespace BonesVr.Minigames.Cleaning
         [SerializeField] private float _cleanTexRange;
         protected float CleanTexRange => _cleanTexRange;
 
+        [Tooltip("How much to change the base dirtiness of the target by on each successful clean")]
+        [Range(0, 1)]
+        [SerializeField] private float _cleanBaseDirtinessChange;
+        protected float CleanBaseDirtinessChange => _cleanBaseDirtinessChange;
+
         private float? m_LastCleanActionTime;
 
         protected virtual void Start()
@@ -95,6 +100,7 @@ namespace BonesVr.Minigames.Cleaning
             float v = uv.y;
 
             dirtyBone.DrawCircle(0f, u, v, CleanTexRange);
+            dirtyBone.ChangeBaseDirtiness(-CleanBaseDirtinessChange);
         }
     }
 }
