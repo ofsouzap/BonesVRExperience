@@ -7,15 +7,10 @@ namespace BonesVr.Minigames.Cleaning
     {
         public Rigidbody Rigidbody => GetComponent<Rigidbody>();
 
-        [Header("Cleaning Target")]
+        [Header("Cleaning Targeting")]
 
-        [Tooltip("The transforms for the game object used as the origin points for the cleaning action. The forward direction and position of these transforms help find which parts of a mesh to clean")]
-        [SerializeField] private Transform[] _cleaningOrigins = new Transform[0];
-        protected Transform[] CleaningOrigins => _cleaningOrigins;
-
-        [Min(0f)]
-        [SerializeField] private float _cleanRange;
-        protected float CleanRange => _cleanRange;
+        [SerializeField] private CleaningBrushTriggerController _triggerController;
+        protected CleaningBrushTriggerController TriggerController => _triggerController;
 
         [Header("Action Conditions")]
 
@@ -44,76 +39,62 @@ namespace BonesVr.Minigames.Cleaning
 
         private float? m_LastCleanActionTime;
 
-        protected virtual void Awake()
-        {
-            if (CleaningOrigins == null)
-                Debug.LogError("No cleaning origin set");
-        }
-
         protected virtual void Start()
         {
             m_LastCleanActionTime = null;
+
         }
 
-        protected virtual void Update()
+        protected virtual void OnEnable()
+        {
+            TriggerController.DirtyBoneEnteredTrigger.AddListener(TryClean);
+        }
+
+        protected virtual void OnDisable()
+        {
+            TriggerController.DirtyBoneEnteredTrigger.RemoveListener(TryClean);
+        }
+
+        protected void TryClean(DirtyBoneController dirtyBone, Vector3 point)
         {
             if (CheckCanClean())
-                PerformCleanAction();
-        }
-
-        protected virtual void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.yellow;
-
-            if (CleaningOrigins != null)
-                foreach (Transform cleaningOrigin in CleaningOrigins)
-                    Gizmos.DrawLine(cleaningOrigin.position, cleaningOrigin.position + (cleaningOrigin.forward * CleanRange));
+                PerformCleanAction(dirtyBone, point);
         }
 
         protected bool CheckCanClean()
             => Rigidbody.velocity.sqrMagnitude >= MinimumCleanSpeedSqr
             && (!m_LastCleanActionTime.HasValue || Time.time >= m_LastCleanActionTime.Value + CleanActionDelay);
 
-        protected void PerformCleanAction()
+        protected void PerformCleanAction(DirtyBoneController dirtyBone, Vector3 point)
         {
             m_LastCleanActionTime = Time.time;
 
-            foreach (Transform cleaningOrigin in CleaningOrigins)
-                if (Physics.Raycast(cleaningOrigin.position, cleaningOrigin.forward, out var hit, CleanRange))
+            Vector3 objectSpaceHitPos = dirtyBone.MeshFilter.transform.InverseTransformPoint(point);
+            Mesh mesh = dirtyBone.MeshFilter.sharedMesh;
+
+            // Find the index of the closest vertex to the hit point (in object space)
+
+            int idxStep = mesh.vertices.Length / CleanUvTargetMaxVertCheckCount;
+
+            float minSqrDist = Mathf.Infinity;
+            int minVertIdx = 0;
+
+            for (int i = 0; i < mesh.vertices.Length; i += idxStep)
+            {
+                Vector3 vert = mesh.vertices[i];
+                float sqrDist = (vert - objectSpaceHitPos).sqrMagnitude;
+                if (sqrDist < minSqrDist)
                 {
-                    var dirtController = hit.transform.GetComponentInParent<DirtyBoneController>();
-
-                    if (dirtController != null)
-                    {
-                        Vector3 hitPos = hit.point;
-                        Vector3 objectSpaceHitPos = dirtController.MeshFilter.transform.InverseTransformPoint(hitPos);
-                        Mesh mesh = dirtController.MeshFilter.sharedMesh;
-
-                        // Find the index of the closest vertex to the hit point (in object space)
-
-                        int idxStep = mesh.vertices.Length / CleanUvTargetMaxVertCheckCount;
-
-                        float minSqrDist = Mathf.Infinity;
-                        int minVertIdx = 0;
-
-                        for (int i = 0; i < mesh.vertices.Length; i += idxStep)
-                        {
-                            Vector3 vert = mesh.vertices[i];
-                            float sqrDist = (vert - objectSpaceHitPos).sqrMagnitude;
-                            if (sqrDist < minSqrDist)
-                            {
-                                minSqrDist = sqrDist;
-                                minVertIdx = i;
-                            }
-                        }
-
-                        Vector2 uv = mesh.uv[minVertIdx];
-                        float u = uv.x;
-                        float v = uv.y;
-
-                        dirtController.DrawCircle(0f, u, v, CleanTexRange);
-                    }
+                    minSqrDist = sqrDist;
+                    minVertIdx = i;
                 }
+            }
+
+            Vector2 uv = mesh.uv[minVertIdx];
+            float u = uv.x;
+            float v = uv.y;
+
+            dirtyBone.DrawCircle(0f, u, v, CleanTexRange);
         }
     }
 }
