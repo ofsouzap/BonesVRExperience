@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d199793dc19e74b9aa122c795ca2b6, type: 3}
   m_Name: DemoStage
   m_EditorClassIdentifier: 
-  m_StageName: Demo Stage
+  m_StageName: Demo
   m_MainPlatformStagePrefab: {fileID: 5260560237282654522, guid: 234754d2d18108c4881d9515775187c0,
     type: 3}
   m_NextStage: {fileID: 0}

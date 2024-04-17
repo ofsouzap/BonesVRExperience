@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 684f1b20a8c4ae946aaa21029631895b, type: 3}
-  m_Name: PlayerProgress
+  m_Script: {fileID: 11500000, guid: 67d199793dc19e74b9aa122c795ca2b6, type: 3}
+  m_Name: SkullEduBonesStage
   m_EditorClassIdentifier: 
-  m_CurrentStage: {fileID: 11400000, guid: c3a8e81d17af1de4db7d0c6394931d5e, type: 2}
+  m_StageName: Skull EduBones
+  m_MainPlatformStagePrefab: {fileID: 5260560237282654522, guid: 458cbde4d487dcb45ab7f1eaaa25edd4,
+    type: 3}
+  m_NextStage: {fileID: 0}
