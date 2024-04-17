@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684f1b20a8c4ae946aaa21029631895b, type: 3}
   m_Name: PlayerProgress
   m_EditorClassIdentifier: 
-  m_CurrentStage: {fileID: 11400000, guid: c3a8e81d17af1de4db7d0c6394931d5e, type: 2}
+  m_CurrentStage: {fileID: 11400000, guid: 9b84894548fb8694cb57eaf9e01b0511, type: 2}

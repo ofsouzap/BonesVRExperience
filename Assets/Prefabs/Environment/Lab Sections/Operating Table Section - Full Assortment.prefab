@@ -1471,7 +1471,7 @@ PrefabInstance:
     - target: {fileID: 5913664721822189721, guid: a4c757592a638884eabcb9cee5c01f84,
         type: 3}
       propertyPath: m_Name
-      value: Operating Table Section - Basic Assortment
+      value: Operating Table Section - Full Assortment
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

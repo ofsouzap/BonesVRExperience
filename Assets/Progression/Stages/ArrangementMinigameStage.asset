@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67d199793dc19e74b9aa122c795ca2b6, type: 3}
-  m_Name: SkullEduBonesStage
+  m_Name: ArrangementMinigameStage
   m_EditorClassIdentifier: 
-  m_StageName: Skull EduBones
-  m_MainPlatformStagePrefab: {fileID: 5260560237282654522, guid: 458cbde4d487dcb45ab7f1eaaa25edd4,
+  m_StageName: Arrangement Minigame
+  m_MainPlatformStagePrefab: {fileID: 5260560237282654522, guid: 4b2c6f1788a19dd4e88ffba7540b48ce,
     type: 3}
-  m_NextStage: {fileID: 11400000, guid: 9b84894548fb8694cb57eaf9e01b0511, type: 2}
+  m_NextStage: {fileID: 0}
