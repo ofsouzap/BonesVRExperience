@@ -12,7 +12,7 @@ namespace BonesVr.Progression
 
         public ProgressionStage GetCurrentStage() => m_CurrentStage;
 
-        private void SetCurrentStage(ProgressionStage stage)
+        public void SetCurrentStage(ProgressionStage stage)
         {
             m_CurrentStage = stage;
             OnStageChanged.Invoke();

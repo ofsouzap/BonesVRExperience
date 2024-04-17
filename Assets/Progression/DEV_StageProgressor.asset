@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: DEV_StageProgressor
   m_EditorClassIdentifier: 
   m_PlayerProgress: {fileID: 11400000, guid: e7e475656bb62804c8979928d13c570c, type: 2}
+  m_ResetProgressionStage: {fileID: 11400000, guid: 32a841ecdb377694f8d958874ee839cb,
+    type: 2}

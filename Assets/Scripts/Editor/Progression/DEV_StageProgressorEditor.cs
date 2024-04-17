@@ -13,6 +13,9 @@ namespace BonesVr.Editor.Progression
 
             if (GUILayout.Button("Progress One Stage"))
                 (target as DEV_StageProgressor).ProgressStage();
+
+            if (GUILayout.Button("Reset Progression"))
+                (target as DEV_StageProgressor).ResetProgression();
         }
     }
 }
