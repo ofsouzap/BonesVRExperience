@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: SkullEduBonesStage
   m_EditorClassIdentifier: 
   m_StageName: Skull EduBones
+  m_NextStage: {fileID: 11400000, guid: 9b84894548fb8694cb57eaf9e01b0511, type: 2}
+  m_UsePlayerStartPosition: 1
+  m_PlayerStartPosition: {x: -0.87, y: 0.6, z: 7.168}
+  m_UsePlayerStartRotation: 1
+  m_PlayerStartRotationEuler: {x: 0, y: 90, z: 0}
   m_MainPlatformStagePrefab: {fileID: 5260560237282654522, guid: 458cbde4d487dcb45ab7f1eaaa25edd4,
     type: 3}
-  m_NextStage: {fileID: 11400000, guid: 9b84894548fb8694cb57eaf9e01b0511, type: 2}

@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: ArrangementMinigameStage
   m_EditorClassIdentifier: 
   m_StageName: Arrangement Minigame
+  m_NextStage: {fileID: 0}
+  m_UsePlayerStartPosition: 1
+  m_PlayerStartPosition: {x: 0, y: 0.6, z: 4.4440002}
+  m_UsePlayerStartRotation: 1
+  m_PlayerStartRotationEuler: {x: 0, y: 0, z: 0}
   m_MainPlatformStagePrefab: {fileID: 5260560237282654522, guid: 4b2c6f1788a19dd4e88ffba7540b48ce,
     type: 3}
-  m_NextStage: {fileID: 0}

@@ -1,4 +1,5 @@
-﻿using BonesVr.Progression;
+﻿using BonesVr.Player;
+using BonesVr.Progression;
 using UnityEngine;
 
 namespace BonesVr.SceneControllers
@@ -18,27 +19,38 @@ namespace BonesVr.SceneControllers
         {
             base.Start();
 
-            UpdateStagePrefabs();
+            LoadPlayerProgressStage(PlayerProgress.GetCurrentStage());
         }
 
         protected override void OnEnable()
         {
             base.OnEnable();
 
-            PlayerProgress.OnStageChanged.AddListener(UpdateStagePrefabs);
+            PlayerProgress.OnStageChanged.AddListener(OnPlayerProgressStageChanged);
         }
 
         protected override void OnDisable()
         {
             base.OnDisable();
 
-            PlayerProgress.OnStageChanged.RemoveListener(UpdateStagePrefabs);
+            PlayerProgress.OnStageChanged.RemoveListener(OnPlayerProgressStageChanged);
         }
 
-        protected void UpdateStagePrefabs()
+        private void OnPlayerProgressStageChanged()
+            => LoadPlayerProgressStage(PlayerProgress.GetCurrentStage());
+
+        protected void LoadPlayerProgressStage(ProgressionStage stage)
         {
-            if (PlayerProgress.GetCurrentStage().GetMainPlatformStagePrefab() != null)
-                SetMainPlatformStagePrefab(PlayerProgress.GetCurrentStage().GetMainPlatformStagePrefab());
+            Vector3? startPos = stage.GetPlayerStartPosition();
+            if (startPos.HasValue)
+                PlayerController.SceneInstance(gameObject).SetPlayerPosition(startPos.Value);
+
+            Quaternion? startRot = stage.GetPlayerStartRotation();
+            if (startRot.HasValue)
+                PlayerController.SceneInstance(gameObject).SetPlayerRotation(startRot.Value);
+
+            if (stage.GetMainPlatformStagePrefab() != null)
+                SetMainPlatformStagePrefab(stage.GetMainPlatformStagePrefab());
         }
 
         protected void SetMainPlatformStagePrefab(GameObject prefab)
