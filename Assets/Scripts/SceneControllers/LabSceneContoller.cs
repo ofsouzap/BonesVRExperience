@@ -18,6 +18,25 @@ namespace BonesVr.SceneControllers
         {
             base.Start();
 
+            UpdateStagePrefabs();
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            PlayerProgress.OnStageChanged.AddListener(UpdateStagePrefabs);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            PlayerProgress.OnStageChanged.RemoveListener(UpdateStagePrefabs);
+        }
+
+        protected void UpdateStagePrefabs()
+        {
             if (PlayerProgress.GetCurrentStage().GetMainPlatformStagePrefab() != null)
                 SetMainPlatformStagePrefab(PlayerProgress.GetCurrentStage().GetMainPlatformStagePrefab());
         }
