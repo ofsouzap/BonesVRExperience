@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7426739287718734553}
-  - component: {fileID: 4120035232808263791}
+  - component: {fileID: 1965738479802734342}
   m_Layer: 0
   m_Name: Right Hand
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 2407257064454580684}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4120035232808263791
+--- !u!114 &1965738479802734342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,22 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6695548139225105021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 971de2822f9216341a4344a47c2da8b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 42c60c16a83fa5d44ae5cca01bfb31ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8613247946217010102}
-  _thumbTouchedAction: {fileID: 3910702396079112509, guid: 94fa09090a0301b418be52c795cd9eae,
-    type: 3}
-  _triggerTouchedAction: {fileID: -8053833879459445122, guid: 94fa09090a0301b418be52c795cd9eae,
-    type: 3}
-  _gripTouchedAction: {fileID: -8053833879459445122, guid: 94fa09090a0301b418be52c795cd9eae,
-    type: 3}
-  _thumbValAction: {fileID: 6618247496569027047, guid: 94fa09090a0301b418be52c795cd9eae,
-    type: 3}
-  _triggerValAction: {fileID: 8428488131338899481, guid: 94fa09090a0301b418be52c795cd9eae,
-    type: 3}
-  _gripValAction: {fileID: 2920611862196009454, guid: 94fa09090a0301b418be52c795cd9eae,
-    type: 3}
 --- !u!1001 &2802069059764489767
 PrefabInstance:
   m_ObjectHideFlags: 0
