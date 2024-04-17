@@ -32,6 +32,14 @@ namespace BonesVr.Minigames.Arrangement
         [SerializeField] private Quaternion _previewGizmoRotation = Quaternion.identity;
         [SerializeField] private Vector3 _previewGizmoScale = Vector3.one;
 
+        [Header("Status Indicator")]
+
+        [SerializeField] private GameObject _statusIndicatorCorrect;
+        protected GameObject StatusIndicatorCorrect => _statusIndicatorCorrect;
+
+        [SerializeField] private GameObject _statusIndicatorIncorrect;
+        protected GameObject StatusIndicatorIncorrect => _statusIndicatorIncorrect;
+
         protected Matrix4x4 GetGizmoExtraTrsMat()
             => TransformMatrices.FromTrs(_previewGizmoPosition, _previewGizmoRotation, _previewGizmoScale);
 
@@ -63,14 +71,21 @@ namespace BonesVr.Minigames.Arrangement
         protected TRS GetPreviewGizmoTrs()
             => TransformMatrices.ToTrs(GetPreviewGizmoTrsMat());
 
+        protected virtual void Start()
+        {
+            HideStatusIndicators();
+        }
+
         protected virtual void OnEnable()
         {
             Interactor.selectEntered.AddListener(OnInteractorSelectEnter);
+            Interactor.selectExited.AddListener(OnInteractorSelectExit);
         }
 
         protected virtual void OnDisable()
         {
             Interactor.selectEntered.RemoveListener(OnInteractorSelectEnter);
+            Interactor.selectExited.RemoveListener(OnInteractorSelectExit);
         }
 
         protected virtual void OnValidate()
@@ -94,13 +109,41 @@ namespace BonesVr.Minigames.Arrangement
                 OnBoneSelected(bone);
         }
 
+        private void OnInteractorSelectExit(SelectExitEventArgs _)
+        {
+            HideStatusIndicators();
+        }
+
         protected virtual void OnBoneSelected(BoneArrangementBone bone)
         {
+            if (bone.Type == CorrectBoneType)
+                ShowCorrectStatusIndicator();
+            else
+                ShowIncorrectStatusIndicator();
+
             if (bone.Type == CorrectBoneType)
             {
                 // TODO - this is where the correct bone has been selected. Can do something here
                 // TODO - this seems to be called repeatedly when the correct bone is in the slot, not just when it starts being selected. Might be a problem
             }
+        }
+
+        private void ShowCorrectStatusIndicator()
+        {
+            StatusIndicatorCorrect.SetActive(true);
+            StatusIndicatorIncorrect.SetActive(false);
+        }
+
+        private void ShowIncorrectStatusIndicator()
+        {
+            StatusIndicatorCorrect.SetActive(false);
+            StatusIndicatorIncorrect.SetActive(true);
+        }
+
+        private void HideStatusIndicators()
+        {
+            StatusIndicatorCorrect.SetActive(false);
+            StatusIndicatorIncorrect.SetActive(false);
         }
     }
 }
