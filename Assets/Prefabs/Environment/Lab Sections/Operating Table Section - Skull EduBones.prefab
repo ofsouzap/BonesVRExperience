@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 5913664721822189721, guid: a4c757592a638884eabcb9cee5c01f84,
         type: 3}
       propertyPath: m_Name
-      value: Operating Table Section - Basic Skull EduBones
+      value: Operating Table Section - Skull EduBones
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 6605350022332688058, guid: 94d46c382d72da243a570554138ea84e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.365
+      value: -0.622
       objectReference: {fileID: 0}
     - target: {fileID: 6605350022332688058, guid: 94d46c382d72da243a570554138ea84e,
         type: 3}
@@ -200,7 +200,7 @@ PrefabInstance:
     - target: {fileID: 2013408739214677447, guid: 9f479ba09cd45894aae32a3edd3fd5a4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.365
+      value: 0.265
       objectReference: {fileID: 0}
     - target: {fileID: 2013408739214677447, guid: 9f479ba09cd45894aae32a3edd3fd5a4,
         type: 3}
@@ -274,7 +274,7 @@ PrefabInstance:
     - target: {fileID: 4352944247111918342, guid: 4392b9b1c10e333468945e6c027984dd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.365
+      value: -0.265
       objectReference: {fileID: 0}
     - target: {fileID: 4352944247111918342, guid: 4392b9b1c10e333468945e6c027984dd,
         type: 3}
@@ -353,7 +353,7 @@ PrefabInstance:
     - target: {fileID: 4274884474414100368, guid: bd1390037df45e54a8c108a1d3c33536,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.365
+      value: 0.622
       objectReference: {fileID: 0}
     - target: {fileID: 4274884474414100368, guid: bd1390037df45e54a8c108a1d3c33536,
         type: 3}
