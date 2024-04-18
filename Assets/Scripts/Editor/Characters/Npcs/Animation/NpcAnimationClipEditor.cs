@@ -16,9 +16,9 @@ namespace BonesVr.Editor.Characters.Npcs.Animation
 
             if (clip.Keyframes.Length > 0)
             {
-                EditorGUILayout.LabelField($"Start position: ({clip.Keyframes[0].Item2.m_RootLocalPosition.x}, {clip.Keyframes[0].Item2.m_RootLocalPosition.y}, {clip.Keyframes[0].Item2.m_RootLocalPosition.z})");
+                EditorGUILayout.LabelField($"Start position: ({clip.Keyframes[0].keyframe.m_RootLocalPosition.x}, {clip.Keyframes[0].keyframe.m_RootLocalPosition.y}, {clip.Keyframes[0].keyframe.m_RootLocalPosition.z})");
                 int lastIdx = clip.Keyframes.Length - 1;
-                EditorGUILayout.LabelField($"End position: ({clip.Keyframes[lastIdx].Item2.m_RootLocalPosition.x}, {clip.Keyframes[lastIdx].Item2.m_RootLocalPosition.y}, {clip.Keyframes[lastIdx].Item2.m_RootLocalPosition.z})");
+                EditorGUILayout.LabelField($"End position: ({clip.Keyframes[lastIdx].keyframe.m_RootLocalPosition.x}, {clip.Keyframes[lastIdx].keyframe.m_RootLocalPosition.y}, {clip.Keyframes[lastIdx].keyframe.m_RootLocalPosition.z})");
             }
         }
     }

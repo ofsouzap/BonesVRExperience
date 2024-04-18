@@ -5,6 +5,7 @@ namespace BonesVr.Characters.Npcs.Animation
 {
     public class NpcAnimationClip : ScriptableObject
     {
+        [Serializable]
         public struct Keyframe
         {
             public Vector3 m_RootLocalPosition;
@@ -25,25 +26,38 @@ namespace BonesVr.Characters.Npcs.Animation
                 };
         }
 
+        [Serializable]
+        public struct KeyframePair
+        {
+            public float time;
+            public Keyframe keyframe;
+
+            public KeyframePair(float time, Keyframe keyframe)
+            {
+                this.time = time;
+                this.keyframe = keyframe;
+            }
+        }
+
         /// <summary>
         /// The keyframes for the clip.
         /// These must be in increasing order.
         /// The float value for a keyframe is the absolute time of it with time 0 representing when the clip starts. The time value of the first keyframe might be ignored.
         /// </summary>
-        private Tuple<float, Keyframe>[] m_Keyframes = new Tuple<float, Keyframe>[0];
+        [SerializeField] private KeyframePair[] m_Keyframes = new KeyframePair[0];
 
-        public Tuple<float, Keyframe>[] Keyframes => m_Keyframes;
+        public KeyframePair[] Keyframes => m_Keyframes;
 
         /// <summary>
         /// Sets the keyframes to a copy of the parameter
         /// </summary>
-        private void SetKeyframes(Tuple<float, Keyframe>[] keyframes)
+        private void SetKeyframes(KeyframePair[] keyframes)
         {
-            m_Keyframes = new Tuple<float, Keyframe>[keyframes.Length];
+            m_Keyframes = new KeyframePair[keyframes.Length];
             Array.Copy(keyframes, m_Keyframes, Keyframes.Length);
         }
 
-        public static NpcAnimationClip CreateFromKeyframes(Tuple<float, Keyframe>[] keyframes)
+        public static NpcAnimationClip CreateFromKeyframes(KeyframePair[] keyframes)
         {
             NpcAnimationClip obj = CreateInstance<NpcAnimationClip>();
             obj.SetKeyframes(keyframes);

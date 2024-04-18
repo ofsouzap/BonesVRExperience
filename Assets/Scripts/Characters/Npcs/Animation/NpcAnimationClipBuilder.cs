@@ -7,11 +7,11 @@ namespace BonesVr.Characters.Npcs.Animation
 {
     public class NpcAnimationClipBuilder
     {
-        protected readonly IList<Tuple<float, Keyframe>> m_Keyframes;
+        protected readonly IList<KeyframePair> m_Keyframes;
 
         public NpcAnimationClipBuilder()
         {
-            m_Keyframes = new List<Tuple<float, Keyframe>>();
+            m_Keyframes = new List<KeyframePair>();
         }
 
         public void AddKeyframe(float t, Keyframe kf)

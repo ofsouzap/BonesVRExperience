@@ -8,9 +8,6 @@ namespace BonesVr.Characters.Npcs.Animation
         [SerializeField] private NpcAnimationTargets _animationTargets;
         protected NpcAnimationTargets AnimationTargets => _animationTargets;
 
-        [SerializeField] private bool _playOnStart = false;
-        protected bool PlayOnStart => _playOnStart;
-
         [Tooltip("If set, this clip will start being played on Start")]
         [SerializeField] private NpcAnimationClip _initialClip = null;
 
@@ -22,8 +19,8 @@ namespace BonesVr.Characters.Npcs.Animation
 
         protected virtual void Start()
         {
-            if (_initialClip == null)
-                StartClip(m_CurrClip);
+            if (_initialClip != null)
+                StartClip(_initialClip);
             else
                 StopClip();
         }
@@ -34,21 +31,21 @@ namespace BonesVr.Characters.Npcs.Animation
             {
                 float t = Time.time - m_CurrClipStartTime;
 
+                // Move forward through active keyframes if possible and needed
+                while (m_CurrKeyframeIdx < m_CurrClip.Keyframes.Length - 1 && t >= m_CurrClip.Keyframes[m_CurrKeyframeIdx + 1].time)
+                    m_CurrKeyframeIdx++;
+
                 if (m_CurrKeyframeIdx == m_CurrClip.Keyframes.Length - 1)
                 {
                     // On last keyframe avaliable
-                    AnimationTargets.ApplyKeyframe(m_CurrClip.Keyframes[m_CurrKeyframeIdx].Item2);
+                    AnimationTargets.ApplyKeyframe(m_CurrClip.Keyframes[m_CurrKeyframeIdx].keyframe);
                 }
                 else
                 {
-                    // Move forward through active keyframes if needed
-                    while (t >= m_CurrClip.Keyframes[m_CurrKeyframeIdx + 1].Item1)
-                        m_CurrKeyframeIdx++;
-
-                    Tuple<float, NpcAnimationClip.Keyframe> pairA = m_CurrClip.Keyframes[m_CurrKeyframeIdx];
-                    float aTime = pairA.Item1;
-                    NpcAnimationClip.Keyframe a = pairA.Item2;
-                    NpcAnimationClip.Keyframe b = m_CurrClip.Keyframes[m_CurrKeyframeIdx + 1].Item2;
+                    NpcAnimationClip.KeyframePair pairA = m_CurrClip.Keyframes[m_CurrKeyframeIdx];
+                    float aTime = pairA.time;
+                    NpcAnimationClip.Keyframe a = pairA.keyframe;
+                    NpcAnimationClip.Keyframe b = m_CurrClip.Keyframes[m_CurrKeyframeIdx + 1].keyframe;
 
                     AnimationTargets.ApplyKeyframe(NpcAnimationClip.Keyframe.Interpolate(a, b, t - aTime));
                 }
