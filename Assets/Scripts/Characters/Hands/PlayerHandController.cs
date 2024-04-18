@@ -27,6 +27,13 @@ namespace BonesVr.Characters.Hands
         [SerializeField] private InputActionReference _gripValAction;
         protected InputAction GripValAction => _gripValAction.action;
 
+        public bool ThumbTouched { get; private set; }
+        public bool TriggerTouched { get; private set; }
+        public bool GripTouched { get; private set; }
+        public float ThumbVal { get; private set; }
+        public float TriggerVal { get; private set; }
+        public float GripVal { get; private set; }
+
         protected virtual void Awake()
         {
             Hand = GetComponent<Hand>();
@@ -34,12 +41,28 @@ namespace BonesVr.Characters.Hands
 
         protected virtual void Update()
         {
-            Hand.SetThumbTouched(ThumbTouchedAction.ReadValue<float>() > .5f);
-            Hand.SetTriggerTouched(TriggerTouchedAction.ReadValue<float>() > .5f);
-            Hand.SetGripTouched(GripTouchedAction.ReadValue<float>() > .5f);
-            Hand.SetThumbVal(ThumbValAction.ReadValue<float>());
-            Hand.SetTriggerVal(TriggerValAction.ReadValue<float>());
-            Hand.SetGripVal(GripValAction.ReadValue<float>());
+            UpdateStoredActionVals();
+            UpdateHandValues();
+        }
+
+        protected void UpdateStoredActionVals()
+        {
+            ThumbTouched = ThumbTouchedAction.ReadValue<float>() > .5f;
+            TriggerTouched = TriggerTouchedAction.ReadValue<float>() > .5f;
+            GripTouched = GripTouchedAction.ReadValue<float>() > .5f;
+            ThumbVal = ThumbValAction.ReadValue<float>();
+            TriggerVal = TriggerValAction.ReadValue<float>();
+            GripVal = GripValAction.ReadValue<float>();
+        }
+
+        protected void UpdateHandValues()
+        {
+            Hand.SetThumbTouched(ThumbTouched);
+            Hand.SetIndexTouched(TriggerTouched);
+            Hand.SetGripTouched(GripTouched);
+            Hand.SetThumbVal(ThumbVal);
+            Hand.SetIndexVal(TriggerVal);
+            Hand.SetGripVal(GripVal);
         }
     }
 }

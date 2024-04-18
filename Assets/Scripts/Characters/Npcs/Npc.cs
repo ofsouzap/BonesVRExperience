@@ -1,18 +1,18 @@
 ﻿using BonesVr.Characters.Hands;
 using UnityEngine;
 
-namespace BonesVr.Characters.NpcControllers
+namespace BonesVr.Characters.Npcs
 {
     public class Npc : MonoBehaviour
     {
         [SerializeField] private Hand _rightHand;
-        protected Hand RightHand => _rightHand;
+        public Hand RightHand => _rightHand;
 
         [SerializeField] private Hand _leftHand;
-        protected Hand LeftHand => _leftHand;
+        public Hand LeftHand => _leftHand;
 
         [SerializeField] private GameObject _head;
-        protected GameObject Head => _head;
+        public GameObject Head => _head;
 
         protected virtual void Awake()
         {

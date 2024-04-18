@@ -123,10 +123,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: TriggerTouched
+    m_ConditionEvent: IndexTouched
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: TriggerVal
+    m_ConditionEvent: IndexVal
     m_EventTreshold: 0.01
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1846713314088846408}
@@ -360,37 +360,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: TriggerVal
+    m_Controller: {fileID: 0}
+  - m_Name: IndexVal
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: GripVal
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: ThumbTouched
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: TriggerTouched
+    m_Controller: {fileID: 0}
+  - m_Name: IndexTouched
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: GripTouched
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -505,7 +505,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: TriggerVal
+    m_ConditionEvent: IndexVal
     m_EventTreshold: 0.01
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2015436699222189903}
@@ -547,7 +547,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: ThumbVal
     m_Mirror: 0
-  m_BlendParameter: TriggerVal
+  m_BlendParameter: IndexVal
   m_BlendParameterY: ThumbVal
   m_MinThreshold: 0
   m_MaxThreshold: 1
@@ -652,7 +652,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: TriggerTouched
+    m_ConditionEvent: IndexTouched
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2015436699222189903}
