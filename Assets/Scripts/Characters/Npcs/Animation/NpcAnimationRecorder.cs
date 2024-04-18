@@ -32,8 +32,8 @@ namespace BonesVr.Characters.Npcs.Animation
         [SerializeField] private float _captureDelay =.2f;
         protected float CaptureDelay => _captureDelay;
 
-        [SerializeField] private NpcAnimationTargets _recordingTargets;
-        protected NpcAnimationTargets RecordingTargets => _recordingTargets;
+        [SerializeField] private NpcAnimationRecordingTargets _recordingTargets;
+        protected NpcAnimationRecordingTargets RecordingTargets => _recordingTargets;
 
         /// <summary>
         /// This is null if and only if the recorder is not currently recording.

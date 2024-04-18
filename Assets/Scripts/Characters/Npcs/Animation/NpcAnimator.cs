@@ -48,17 +48,57 @@ namespace BonesVr.Characters.Npcs.Animation
 
         protected struct TargetTrackAnimators
         {
+            private static bool InterpolateBools(bool a, bool b, float t)
+                => t < .5f ? a : b;
+
             public TrackAnimator<Vector3> rootLocalPosition;
             public TrackAnimator<Quaternion> rootLocalRotation;
 
             public TrackAnimator<Vector3> headLocalPosition;
             public TrackAnimator<Quaternion> headLocalRotation;
 
+            public TrackAnimator<Vector3> RHLocalPosition;
+            public TrackAnimator<Quaternion> RHLocalRotation;
+            public TrackAnimator<bool> RHThumbTouched;
+            public TrackAnimator<bool> RHIndexTouched;
+            public TrackAnimator<bool> RHGripTouched;
+            public TrackAnimator<float> RHThumbVal;
+            public TrackAnimator<float> RHIndexVal;
+            public TrackAnimator<float> RHGripVal;
+
+            public TrackAnimator<Vector3> LHLocalPosition;
+            public TrackAnimator<Quaternion> LHLocalRotation;
+            public TrackAnimator<bool> LHThumbTouched;
+            public TrackAnimator<bool> LHIndexTouched;
+            public TrackAnimator<bool> LHGripTouched;
+            public TrackAnimator<float> LHThumbVal;
+            public TrackAnimator<float> LHIndexVal;
+            public TrackAnimator<float> LHGripVal;
+
             public TargetTrackAnimators(
                 ITrack<Vector3> rootLocalPositionTrack,
                 ITrack<Quaternion> rootLocalRotationTrack,
+
                 ITrack<Vector3> headLocalPositionTrack,
-                ITrack<Quaternion> headLocalRotationTrack
+                ITrack<Quaternion> headLocalRotationTrack,
+
+                ITrack<Vector3> RHLocalPositionTrack,
+                ITrack<Quaternion> RHLocalRotationTrack,
+                ITrack<bool> RHThumbTouchedTrack,
+                ITrack<bool> RHIndexTouchedTrack,
+                ITrack<bool> RHGripTouchedTrack,
+                ITrack<float> RHThumbValTrack,
+                ITrack<float> RHIndexValTrack,
+                ITrack<float> RHGripValTrack,
+
+                ITrack<Vector3> LHLocalPositionTrack,
+                ITrack<Quaternion> LHLocalRotationTrack,
+                ITrack<bool> LHThumbTouchedTrack,
+                ITrack<bool> LHIndexTouchedTrack,
+                ITrack<bool> LHGripTouchedTrack,
+                ITrack<float> LHThumbValTrack,
+                ITrack<float> LHIndexValTrack,
+                ITrack<float> LHGripValTrack
                 )
             {
                 rootLocalPosition = new(rootLocalPositionTrack, Vector3.Lerp);
@@ -66,6 +106,24 @@ namespace BonesVr.Characters.Npcs.Animation
 
                 headLocalPosition = new(headLocalPositionTrack, Vector3.Lerp);
                 headLocalRotation = new(headLocalRotationTrack, Quaternion.Lerp);
+
+                RHLocalPosition = new(RHLocalPositionTrack, Vector3.Lerp);
+                RHLocalRotation = new(RHLocalRotationTrack, Quaternion.Lerp);
+                RHThumbTouched = new(RHThumbTouchedTrack, InterpolateBools);
+                RHIndexTouched = new(RHIndexTouchedTrack, InterpolateBools);
+                RHGripTouched = new(RHGripTouchedTrack, InterpolateBools);
+                RHThumbVal = new(RHThumbValTrack, Mathf.Lerp);
+                RHIndexVal = new(RHIndexValTrack, Mathf.Lerp);
+                RHGripVal = new(RHGripValTrack, Mathf.Lerp);
+
+                LHLocalPosition = new(LHLocalPositionTrack, Vector3.Lerp);
+                LHLocalRotation = new(LHLocalRotationTrack, Quaternion.Lerp);
+                LHThumbTouched = new(LHThumbTouchedTrack, InterpolateBools);
+                LHIndexTouched = new(LHIndexTouchedTrack, InterpolateBools);
+                LHGripTouched = new(LHGripTouchedTrack, InterpolateBools);
+                LHThumbVal = new(LHThumbValTrack, Mathf.Lerp);
+                LHIndexVal = new(LHIndexValTrack, Mathf.Lerp);
+                LHGripVal = new(LHGripValTrack, Mathf.Lerp);
             }
 
             public Snapshot GetSnapshot(float t)
@@ -76,11 +134,29 @@ namespace BonesVr.Characters.Npcs.Animation
 
                     headLocalPosition = headLocalPosition.GetValue(t),
                     headLocalRotation = headLocalRotation.GetValue(t),
+
+                    RHLocalPosition = RHLocalPosition.GetValue(t),
+                    RHLocalRotation = RHLocalRotation.GetValue(t),
+                    RHThumbTouched = RHThumbTouched.GetValue(t),
+                    RHIndexTouched = RHIndexTouched.GetValue(t),
+                    RHGripTouched = RHGripTouched.GetValue(t),
+                    RHThumbVal = RHThumbVal.GetValue(t),
+                    RHIndexVal = RHIndexVal.GetValue(t),
+                    RHGripVal = RHGripVal.GetValue(t),
+
+                    LHLocalPosition = LHLocalPosition.GetValue(t),
+                    LHLocalRotation = LHLocalRotation.GetValue(t),
+                    LHThumbTouched = LHThumbTouched.GetValue(t),
+                    LHIndexTouched = LHIndexTouched.GetValue(t),
+                    LHGripTouched = LHGripTouched.GetValue(t),
+                    LHThumbVal = LHThumbVal.GetValue(t),
+                    LHIndexVal = LHIndexVal.GetValue(t),
+                    LHGripVal = LHGripVal.GetValue(t),
                 };
         }
 
-        [SerializeField] private NpcAnimationTargets _animationTargets;
-        protected NpcAnimationTargets AnimationTargets => _animationTargets;
+        [SerializeField] private NpcAnimationAnimatingTargets _animationTargets;
+        protected NpcAnimationAnimatingTargets AnimationTargets => _animationTargets;
 
         [Tooltip("If set, this clip will start being played on Start")]
         [SerializeField] private NpcAnimationClip _initialClip = null;
@@ -114,7 +190,25 @@ namespace BonesVr.Characters.Npcs.Animation
                 clip.m_RootLocalRotation,
 
                 clip.m_HeadLocalPosition,
-                clip.m_HeadLocalRotation
+                clip.m_HeadLocalRotation,
+
+                clip.m_RHLocalPosition,
+                clip.m_RHLocalRotation,
+                clip.m_RHThumbTouched,
+                clip.m_RHIndexTouched,
+                clip.m_RHGripTouched,
+                clip.m_RHThumbVal,
+                clip.m_RHIndexVal,
+                clip.m_RHGripVal,
+
+                clip.m_LHLocalPosition,
+                clip.m_LHLocalRotation,
+                clip.m_LHThumbTouched,
+                clip.m_LHIndexTouched,
+                clip.m_LHGripTouched,
+                clip.m_LHThumbVal,
+                clip.m_LHIndexVal,
+                clip.m_LHGripVal
             );
             m_CurrClipStartTime = Time.time;
         }
