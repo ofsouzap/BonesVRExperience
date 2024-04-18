@@ -35,10 +35,10 @@ namespace BonesVr.Characters.Hands
         protected virtual void Update()
         {
             Hand.SetThumbTouched(ThumbTouchedAction.ReadValue<float>() > .5f);
-            Hand.SetTriggerTouched(TriggerTouchedAction.ReadValue<float>() > .5f);
+            Hand.SetIndexTouched(TriggerTouchedAction.ReadValue<float>() > .5f);
             Hand.SetGripTouched(GripTouchedAction.ReadValue<float>() > .5f);
             Hand.SetThumbVal(ThumbValAction.ReadValue<float>());
-            Hand.SetTriggerVal(TriggerValAction.ReadValue<float>());
+            Hand.SetIndexVal(TriggerValAction.ReadValue<float>());
             Hand.SetGripVal(GripValAction.ReadValue<float>());
         }
     }
