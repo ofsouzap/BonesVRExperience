@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static BonesVr.Characters.Npcs.Animation.NpcAnimationClip;
 
 namespace BonesVr.Characters.Npcs.Animation
 {
@@ -10,19 +11,19 @@ namespace BonesVr.Characters.Npcs.Animation
         public Transform m_Head;
         // TODO - right and left hands
 
-        public readonly NpcAnimationClip.Keyframe CreateKeyframe()
+        public readonly NpcAnimationClip.Snapshot CreateSnapshot()
             => new() {
-                m_RootLocalPosition = m_Root.localPosition,
-                m_RootLocalRotation = m_Root.localRotation,
+                rootLocalPosition = m_Root.localPosition,
+                rootLocalRotation = m_Root.localRotation,
 
-                m_HeadLocalPosition = m_Head.localPosition,
-                m_HeadLocalRotation = m_Head.localRotation,
+                headLocalPosition = m_Head.localPosition,
+                headLocalRotation = m_Head.localRotation,
             };
 
-        public readonly void ApplyKeyframe(NpcAnimationClip.Keyframe kf)
+        public readonly void ApplySnapshot(Snapshot snap)
         {
-            m_Root.transform.SetLocalPositionAndRotation(kf.m_RootLocalPosition, kf.m_RootLocalRotation);
-            m_Head.transform.SetLocalPositionAndRotation(kf.m_HeadLocalPosition, kf.m_HeadLocalRotation);
+            m_Root.transform.SetLocalPositionAndRotation(snap.rootLocalPosition, snap.rootLocalRotation);
+            m_Head.transform.SetLocalPositionAndRotation(snap.headLocalPosition, snap.headLocalRotation);
         }
     }
 }

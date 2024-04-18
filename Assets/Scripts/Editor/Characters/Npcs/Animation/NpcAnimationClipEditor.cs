@@ -12,13 +12,10 @@ namespace BonesVr.Editor.Characters.Npcs.Animation
 
             NpcAnimationClip clip = target as NpcAnimationClip;
 
-            EditorGUILayout.LabelField($"{clip.Keyframes.Length} keyframes");
-
-            if (clip.Keyframes.Length > 0)
+            if (clip.m_RootLocalPosition.GetKeyframes().Count > 0)
             {
-                EditorGUILayout.LabelField($"Start position: ({clip.Keyframes[0].keyframe.m_RootLocalPosition.x}, {clip.Keyframes[0].keyframe.m_RootLocalPosition.y}, {clip.Keyframes[0].keyframe.m_RootLocalPosition.z})");
-                int lastIdx = clip.Keyframes.Length - 1;
-                EditorGUILayout.LabelField($"End position: ({clip.Keyframes[lastIdx].keyframe.m_RootLocalPosition.x}, {clip.Keyframes[lastIdx].keyframe.m_RootLocalPosition.y}, {clip.Keyframes[lastIdx].keyframe.m_RootLocalPosition.z})");
+                EditorGUILayout.LabelField($"Start position: ({clip.m_RootLocalPosition.GetKeyframes()[0].val.x}, {clip.m_RootLocalPosition.GetKeyframes()[0].val.y}, {clip.m_RootLocalPosition.GetKeyframes()[0].val.z})");
+                EditorGUILayout.LabelField($"End position: ({clip.m_RootLocalPosition.GetKeyframes()[^1].val.x}, {clip.m_RootLocalPosition.GetKeyframes()[^1].val.y}, {clip.m_RootLocalPosition.GetKeyframes()[^1].val.z})");
             }
         }
     }

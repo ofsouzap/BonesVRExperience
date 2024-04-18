@@ -56,9 +56,9 @@ namespace BonesVr.Characters.Npcs.Animation
                 if (Time.time >= m_NextCaptureTime)
                 {
                     float t = Time.time - m_CaptureStartTime;
-                    NpcAnimationClip.Keyframe kf = RecordingTargets.CreateKeyframe();
+                    var snap = RecordingTargets.CreateSnapshot();
                     
-                    m_AnimationBuilder.AddKeyframe(t, kf);
+                    m_AnimationBuilder.AddKeyframe(t, snap);
 
                     m_NextCaptureTime = Time.time + CaptureDelay;
                 }

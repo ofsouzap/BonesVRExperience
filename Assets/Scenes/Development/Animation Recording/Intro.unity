@@ -186,6 +186,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8903230940507204160, guid: a4515096a39b119428dacfda81ee3dae,
+        type: 3}
+      propertyPath: _initialClip
+      value: 
+      objectReference: {fileID: 11400000, guid: f8c2d79da00fa634898e0085c62a486f,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -567,7 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _outputPath: NpcAnimations
   m_OutputAssetName: Introduction.Bones
-  _captureDelay: 0.2
+  _captureDelay: 0.033333335
   _recordingTargets:
     m_Root: {fileID: 1735423963}
     m_Head: {fileID: 1735423964}

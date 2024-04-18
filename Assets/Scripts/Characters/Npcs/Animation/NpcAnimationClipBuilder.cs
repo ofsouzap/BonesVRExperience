@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using UnityEngine;
 using static BonesVr.Characters.Npcs.Animation.NpcAnimationClip;
 
 namespace BonesVr.Characters.Npcs.Animation
 {
     public class NpcAnimationClipBuilder
     {
-        protected readonly IList<KeyframePair> m_Keyframes;
+        protected readonly NpcAnimationClip m_AnimationClip;
 
         public NpcAnimationClipBuilder()
         {
-            m_Keyframes = new List<KeyframePair>();
+            m_AnimationClip = ScriptableObject.CreateInstance<NpcAnimationClip>();
         }
 
-        public void AddKeyframe(float t, Keyframe kf)
-        {
-            m_Keyframes.Add(new(t, kf));
-        }
+        public void AddKeyframe(float t, Snapshot snap)
+            => m_AnimationClip.GiveNextSnapshot(t, snap);
 
         public NpcAnimationClip Build()
-            => CreateFromKeyframes(m_Keyframes.ToArray());
+            => m_AnimationClip;
     }
 }
