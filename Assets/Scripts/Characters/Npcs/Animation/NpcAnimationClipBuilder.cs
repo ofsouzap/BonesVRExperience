@@ -15,6 +15,9 @@ namespace BonesVr.Characters.Npcs.Animation
         public void AddKeyframe(float t, Snapshot snap)
             => m_AnimationClip.GiveNextSnapshot(t, snap);
 
+        public void AddTextBoxKeyframe(float t)
+            => m_AnimationClip.AddTextBoxKeyframe(t);
+
         public NpcAnimationClip Build()
             => m_AnimationClip;
     }

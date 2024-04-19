@@ -41,14 +41,5 @@ namespace BonesVr.Characters.Npcs.Animation
                 LHIndexVal = m_LH.IndexVal,
                 LHGripVal = m_LH.GripVal,
             };
-
-        public readonly void ApplySnapshot(Snapshot snap)
-        {
-            m_Root.transform.SetLocalPositionAndRotation(snap.rootLocalPosition, snap.rootLocalRotation);
-
-            m_Head.transform.SetLocalPositionAndRotation(snap.headLocalPosition, snap.headLocalRotation);
-
-            m_RHTransform.SetLocalPositionAndRotation(snap.RHLocalPosition, snap.RHLocalRotation);
-        }
     }
 }

@@ -57,8 +57,12 @@ namespace BonesVr.Characters.Npcs.Animation
 
         protected struct TargetTrackAnimators
         {
+            private static string InterpolateTextBoxes(string a, string b, float t) => t < 1f ? a : b;
+
             private static bool InterpolateBools(bool a, bool b, float t)
                 => t < .5f ? a : b;
+
+            public TrackAnimator<string> textBox;
 
             public TrackAnimator<Vector3> rootLocalPosition;
             public TrackAnimator<Quaternion> rootLocalRotation;
@@ -85,6 +89,8 @@ namespace BonesVr.Characters.Npcs.Animation
             public TrackAnimator<float> LHGripVal;
 
             public TargetTrackAnimators(
+                ITrack<string> textBoxTrack,
+
                 ITrack<Vector3> rootLocalPositionTrack,
                 ITrack<Quaternion> rootLocalRotationTrack,
 
@@ -110,6 +116,8 @@ namespace BonesVr.Characters.Npcs.Animation
                 ITrack<float> LHGripValTrack
                 )
             {
+                textBox = new(textBoxTrack, InterpolateTextBoxes);
+
                 rootLocalPosition = new(rootLocalPositionTrack, Vector3.Lerp);
                 rootLocalRotation = new(rootLocalRotationTrack, Quaternion.Lerp);
 
@@ -138,6 +146,8 @@ namespace BonesVr.Characters.Npcs.Animation
             public Snapshot GetSnapshot(float t)
                 => new()
                 {
+                    textBox = textBox.GetValue(t),
+
                     rootLocalPosition = rootLocalPosition.GetValue(t),
                     rootLocalRotation = rootLocalRotation.GetValue(t),
 
@@ -195,6 +205,8 @@ namespace BonesVr.Characters.Npcs.Animation
         public void StartClip(NpcAnimationClip clip)
         {
             m_TargetTrackAnimators = new(
+                clip.m_TextBox,
+
                 clip.m_RootLocalPosition,
                 clip.m_RootLocalRotation,
 

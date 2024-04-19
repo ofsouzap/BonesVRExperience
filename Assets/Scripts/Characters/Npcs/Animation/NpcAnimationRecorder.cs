@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace BonesVr.Characters.Npcs.Animation
 {
@@ -29,8 +30,11 @@ namespace BonesVr.Characters.Npcs.Animation
         }
 
         [Tooltip("How long to delay between storing a keyframe for the animation")]
-        [SerializeField] private float _captureDelay =.2f;
+        [SerializeField] private float _captureDelay = .2f;
         protected float CaptureDelay => _captureDelay;
+
+        [SerializeField] private InputActionReference _textBoxKeyframeAction;
+        protected InputAction TextBoxKeyframeAction => _textBoxKeyframeAction != null ? _textBoxKeyframeAction.action : null;
 
         [SerializeField] private NpcAnimationRecordingTargets _recordingTargets;
         protected NpcAnimationRecordingTargets RecordingTargets => _recordingTargets;
@@ -57,7 +61,7 @@ namespace BonesVr.Characters.Npcs.Animation
                 {
                     float t = Time.time - m_CaptureStartTime;
                     var snap = RecordingTargets.CreateSnapshot();
-                    
+
                     m_AnimationBuilder.AddKeyframe(t, snap);
 
                     m_NextCaptureTime = Time.time + CaptureDelay;
@@ -65,8 +69,17 @@ namespace BonesVr.Characters.Npcs.Animation
             }
         }
 
+        protected virtual void OnEnable()
+        {
+            if (TextBoxKeyframeAction != null)
+                TextBoxKeyframeAction.started += TextBoxKeyframeActionPressed;
+        }
+
         protected virtual void OnDisable()
         {
+            if (TextBoxKeyframeAction != null)
+                TextBoxKeyframeAction.started -= TextBoxKeyframeActionPressed;
+
             if (IsRecording)
                 StopRecording();
         }
@@ -90,6 +103,23 @@ namespace BonesVr.Characters.Npcs.Animation
             m_AnimationBuilder = null;
 
             Debug.Log($"Saved output at {assetPath}");
+        }
+
+        private void TextBoxKeyframeActionPressed(InputAction.CallbackContext _)
+        {
+            if (IsRecording)
+                AddTextBoxKeyframe();
+        }
+
+        public void AddTextBoxKeyframe()
+        {
+            if (IsRecording)
+            {
+                float t = Time.time - m_CaptureStartTime;
+                m_AnimationBuilder.AddTextBoxKeyframe(t);
+            }
+            else
+                Debug.LogWarning("Trying to add text box keyframe when not recording");
         }
     }
 }

@@ -8,6 +8,8 @@ namespace BonesVr.Characters.Npcs.Animation
     {
         public struct Snapshot
         {
+            public string textBox;
+
             public Vector3 rootLocalPosition;
             public Quaternion rootLocalRotation;
 
@@ -55,6 +57,24 @@ namespace BonesVr.Characters.Npcs.Animation
             /// The track implementation may choose to store this value or discard it if it is too close to the current end value.
             /// </summary>
             public void GiveNextValue(float t, T val);
+        }
+
+        [Serializable]
+        public class TextBoxTrack : ITrack<string>
+        {
+            public List<Keyframe<string>> m_Keyframes;
+
+            public TextBoxTrack()
+            {
+                m_Keyframes = new();
+            }
+
+            public List<Keyframe<string>> GetKeyframes() => m_Keyframes;
+
+            public void GiveNextValue(float t, string val)
+            {
+                m_Keyframes.Add(new(t, val));
+            }
         }
 
         [Serializable]
@@ -143,6 +163,8 @@ namespace BonesVr.Characters.Npcs.Animation
             }
         }
 
+        public TextBoxTrack m_TextBox = new();
+
         public Vector3Track m_RootLocalPosition = new();
         public QuaternionTrack m_RootLocalRotation = new();
 
@@ -167,6 +189,10 @@ namespace BonesVr.Characters.Npcs.Animation
         public AnimFloatTrack m_LHIndexVal = new();
         public AnimFloatTrack m_LHGripVal = new();
 
+        /// <summary>
+        /// Give new values for a certain time.
+        /// Note that the value on the text box track is ignored as adding text box track keyframes should be handled elsewhere.
+        /// </summary>
         public void GiveNextSnapshot(float t, Snapshot snap)
         {
             m_RootLocalPosition.GiveNextValue(t, snap.rootLocalPosition);
@@ -192,6 +218,14 @@ namespace BonesVr.Characters.Npcs.Animation
             m_LHThumbVal.GiveNextValue(t, snap.LHThumbVal);
             m_LHIndexVal.GiveNextValue(t, snap.LHIndexVal);
             m_LHGripVal.GiveNextValue(t, snap.LHGripVal);
+        }
+
+        /// <summary>
+        /// Add a keyframe for a text box value
+        /// </summary>
+        public void AddTextBoxKeyframe(float t, string text = null)
+        {
+            m_TextBox.GiveNextValue(t, text);
         }
     }
 }

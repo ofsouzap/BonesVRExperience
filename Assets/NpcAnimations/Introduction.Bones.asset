@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13b10c7cba63204e8cecb8cbd0b6518, type: 3}
   m_Name: Introduction.Bones
   m_EditorClassIdentifier: 
+  m_TextBox:
+    m_Keyframes:
+    - time: 0
+      val: no
+    - time: 5
+      val: hi
   m_RootLocalPosition:
     m_Keyframes:
     - time: 0.022755623

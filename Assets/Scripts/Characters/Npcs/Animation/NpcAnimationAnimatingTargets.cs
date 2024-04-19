@@ -8,6 +8,7 @@ namespace BonesVr.Characters.Npcs.Animation
     [Serializable]
     public struct NpcAnimationAnimatingTargets
     {
+        public NpcTextBox m_TextBox;
         public Transform m_Root;
         public Transform m_Head;
         public Transform m_RHTransform;
@@ -17,6 +18,8 @@ namespace BonesVr.Characters.Npcs.Animation
 
         public readonly void ApplySnapshot(Snapshot snap)
         {
+            m_TextBox.SetText(snap.textBox);
+
             m_Root.transform.SetLocalPositionAndRotation(snap.rootLocalPosition, snap.rootLocalRotation);
 
             m_Head.transform.SetLocalPositionAndRotation(snap.headLocalPosition, snap.headLocalRotation);
