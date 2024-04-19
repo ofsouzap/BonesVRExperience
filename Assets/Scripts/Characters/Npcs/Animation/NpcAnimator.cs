@@ -20,10 +20,15 @@ namespace BonesVr.Characters.Npcs.Animation
             {
                 m_Track = track;
                 m_InterpolateFunc = interpolateFunc;
+                m_CurrIdx = 0;
             }
 
             public T GetValue(float t)
             {
+                // If no keyframes defined
+                if (Keyframes.Count == 0)
+                    return default;
+
                 // Move forward through active keyframes if possible and needed
                 while (m_CurrIdx < Keyframes.Count - 1 && t >= Keyframes[m_CurrIdx + 1].time)
                     m_CurrIdx++;
@@ -39,9 +44,13 @@ namespace BonesVr.Characters.Npcs.Animation
                     var kfA = Keyframes[m_CurrIdx];
                     float aTime = kfA.time;
                     var a = kfA.val;
-                    var b = Keyframes[m_CurrIdx + 1].val;
+                    var kfB = Keyframes[m_CurrIdx + 1];
+                    float bTime = kfB.time;
+                    var b = kfB.val;
 
-                    return m_InterpolateFunc(a, b, t - aTime);
+                    float tAB = (t - aTime) / (bTime - aTime);
+
+                    return m_InterpolateFunc(a, b, tAB);
                 }
             }
         }
