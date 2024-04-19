@@ -1903,6 +1903,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "DEV Animation Recording",
+            "id": "d7b4e806-e28b-402f-b861-73016bfbedc3",
+            "actions": [
+                {
+                    "name": "Add TextBox Keyframe",
+                    "type": "Button",
+                    "id": "e5b39e97-89ab-406e-9c1b-7e28d7abc09c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Start Recording",
+                    "type": "Button",
+                    "id": "e8d03b63-bd91-4adc-8949-b20da4f6ba84",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Stop Recording",
+                    "type": "Button",
+                    "id": "473880d2-4f22-48a1-b7f3-618500c776ca",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "de3816d6-3671-4881-97bf-ac0b47cd8e1a",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Add TextBox Keyframe",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4598c9a-9a9d-41d0-b374-8ea87f73bfb1",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Start Recording",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89732b4d-bc33-410d-ac12-3e2cb182e88f",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Stop Recording",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

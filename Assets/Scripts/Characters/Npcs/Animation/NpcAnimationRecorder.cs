@@ -33,6 +33,12 @@ namespace BonesVr.Characters.Npcs.Animation
         [SerializeField] private float _captureDelay = .2f;
         protected float CaptureDelay => _captureDelay;
 
+        [SerializeField] private InputActionReference _startRecordingAction;
+        protected InputAction StartRecordingAction => _startRecordingAction != null ? _startRecordingAction.action : null;
+
+        [SerializeField] private InputActionReference _stopRecordingAction;
+        protected InputAction StopRecordingAction => _stopRecordingAction != null ? _stopRecordingAction.action : null;
+
         [SerializeField] private InputActionReference _textBoxKeyframeAction;
         protected InputAction TextBoxKeyframeAction => _textBoxKeyframeAction != null ? _textBoxKeyframeAction.action : null;
 
@@ -71,17 +77,28 @@ namespace BonesVr.Characters.Npcs.Animation
 
         protected virtual void OnEnable()
         {
-            if (TextBoxKeyframeAction != null)
-                TextBoxKeyframeAction.started += TextBoxKeyframeActionPressed;
+            if (StartRecordingAction != null) StartRecordingAction.performed += StartRecordingActionPressed;
+            if (StopRecordingAction != null) StopRecordingAction.performed += StopRecordingActionPressed;
+            if (TextBoxKeyframeAction != null) TextBoxKeyframeAction.performed += TextBoxKeyframeActionPressed;
         }
 
         protected virtual void OnDisable()
         {
-            if (TextBoxKeyframeAction != null)
-                TextBoxKeyframeAction.started -= TextBoxKeyframeActionPressed;
+            if (StartRecordingAction != null) StartRecordingAction.performed -= StartRecordingActionPressed;
+            if (StopRecordingAction != null) StopRecordingAction.performed -= StopRecordingActionPressed;
+            if (TextBoxKeyframeAction != null) TextBoxKeyframeAction.performed -= TextBoxKeyframeActionPressed;
 
             if (IsRecording)
                 StopRecording();
+        }
+
+        private void StartRecordingActionPressed(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed)
+            {
+                if (!IsRecording)
+                    StartRecording();
+            }
         }
 
         public void StartRecording()
@@ -89,26 +106,43 @@ namespace BonesVr.Characters.Npcs.Animation
             m_AnimationBuilder = new();
             m_CaptureStartTime = Time.time;
             m_NextCaptureTime = Time.time;
+
+            Debug.Log("Started recording...");
+        }
+
+        private void StopRecordingActionPressed(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed)
+            {
+                if (IsRecording)
+                    StopRecording();
+            }
         }
 
         public void StopRecording()
         {
-            NpcAnimationClip clip = m_AnimationBuilder.Build();
-            string assetPath = GetOutputPath();
+            if (IsRecording)
+            {
+                NpcAnimationClip clip = m_AnimationBuilder.Build();
+                string assetPath = GetOutputPath();
 
-            AssetDatabase.CreateAsset(clip, assetPath);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+                AssetDatabase.CreateAsset(clip, assetPath);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
 
-            m_AnimationBuilder = null;
+                m_AnimationBuilder = null;
 
-            Debug.Log($"Saved output at {assetPath}");
+                Debug.Log($"Saved output at {assetPath}");
+            }
         }
 
-        private void TextBoxKeyframeActionPressed(InputAction.CallbackContext _)
+        private void TextBoxKeyframeActionPressed(InputAction.CallbackContext ctx)
         {
-            if (IsRecording)
-                AddTextBoxKeyframe();
+            if (ctx.performed)
+            {
+                if (IsRecording)
+                    AddTextBoxKeyframe();
+            }
         }
 
         public void AddTextBoxKeyframe()
