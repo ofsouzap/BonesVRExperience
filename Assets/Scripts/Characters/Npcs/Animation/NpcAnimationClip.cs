@@ -64,9 +64,12 @@ namespace BonesVr.Characters.Npcs.Animation
         {
             public List<Keyframe<string>> m_Keyframes;
 
-            public TextBoxTrack()
+            public TextBoxTrack(bool startEmpty = true)
             {
                 m_Keyframes = new();
+
+                if (startEmpty)
+                    m_Keyframes.Add(new Keyframe<string>(0f, ""));
             }
 
             public List<Keyframe<string>> GetKeyframes() => m_Keyframes;

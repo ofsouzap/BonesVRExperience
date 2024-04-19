@@ -1934,6 +1934,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RH Thumb Touched",
+                    "type": "Value",
+                    "id": "b8060775-26e1-43d4-a209-4f37c04db1d4",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "RH Thumb Value",
+                    "type": "Value",
+                    "id": "dff76710-c6ba-42a6-84e0-846559e7afe3",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LH Thumb Touched",
+                    "type": "Value",
+                    "id": "d1e2d396-75d2-4db9-b7ce-154f09321984",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LH Thumb Value",
+                    "type": "Value",
+                    "id": "66b686f5-3c06-4080-a1d6-dd9dfb620926",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1967,6 +2003,72 @@
                     "processors": "",
                     "groups": "Main",
                     "action": "Stop Recording",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f32b56ca-baa6-40a5-91c8-6cfef202fa97",
+                    "path": "<XRController>{RightHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "RH Thumb Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19f46555-7206-48ab-9058-0f10da0c7478",
+                    "path": "<XRController>{RightHand}/thumbrestTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "RH Thumb Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "236942ed-70fa-476f-9438-223c0359a93f",
+                    "path": "<XRController>{RightHand}/thumbstickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "RH Thumb Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e4eea2d-85e2-4fc5-b216-cd569eba2aca",
+                    "path": "<XRController>{LeftHand}/thumbstickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "LH Thumb Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82c2b02e-10cb-4dc2-88ac-cc6e0c4004d1",
+                    "path": "<XRController>{LeftHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "LH Thumb Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b44a48d1-fcce-45bc-9e03-afef17694839",
+                    "path": "<XRController>{LeftHand}/thumbrestTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "LH Thumb Touched",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
