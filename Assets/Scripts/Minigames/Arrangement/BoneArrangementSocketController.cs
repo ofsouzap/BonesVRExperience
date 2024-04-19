@@ -151,6 +151,8 @@ namespace BonesVr.Minigames.Arrangement
         protected virtual void OnBoneDeselected(BoneArrangementBone bone)
         {
             CorrectBoneHeld = false;
+
+            if (GetMinigameComponent() != null)
                 GetMinigameComponent().OnSocketHasChanged();
         }
 

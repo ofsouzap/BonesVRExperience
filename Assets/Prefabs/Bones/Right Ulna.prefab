@@ -8,10 +8,85 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 215102740446752639, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.002318762
+      objectReference: {fileID: 0}
+    - target: {fileID: 319293064125141308, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.003038601
+      objectReference: {fileID: 0}
+    - target: {fileID: 322447722109949177, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.0020833
+      objectReference: {fileID: 0}
+    - target: {fileID: 805695597807528577, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.001653462
+      objectReference: {fileID: 0}
+    - target: {fileID: 939348336474013636, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.00158447
+      objectReference: {fileID: 0}
     - target: {fileID: 1397457894971555846, guid: 6de5f33c42e82c94892a74973da8738d,
         type: 3}
       propertyPath: m_Name
       value: Right Ulna
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792955058329288547, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.00158447
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219879699573301333, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0122
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219879699573301333, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5078958
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219879699573301333, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.4919775
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219879699573301333, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5078944
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219879699573301333, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49197894
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219879699573301333, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 89.995
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219879699573301333, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378332049972810442, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.001109968
+      objectReference: {fileID: 0}
+    - target: {fileID: 4465703163851807528, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.000280939
       objectReference: {fileID: 0}
     - target: {fileID: 4524754933483446106, guid: 6de5f33c42e82c94892a74973da8738d,
         type: 3}
@@ -67,6 +142,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771402379029741100, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.0020833
+      objectReference: {fileID: 0}
+    - target: {fileID: 5406725547519204305, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.0002588308
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064464926818237329, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.001938995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
