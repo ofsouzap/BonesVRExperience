@@ -16,6 +16,7 @@ namespace BonesVr.Characters.Npcs.Animation
         {
             string path = $"Assets/{_outputPath}/{m_OutputAssetName}.asset";
 
+#if UNITY_EDITOR
             if (AssetDatabase.LoadAssetAtPath<Object>(path) == null)
                 return path;
             else
@@ -27,6 +28,9 @@ namespace BonesVr.Characters.Npcs.Animation
                         return path;
                 }
             }
+#else
+            return "";
+#endif
         }
 
         [Tooltip("How long to delay between storing a keyframe for the animation")]
@@ -126,9 +130,11 @@ namespace BonesVr.Characters.Npcs.Animation
                 NpcAnimationClip clip = m_AnimationBuilder.Build();
                 string assetPath = GetOutputPath();
 
+#if UNITY_EDITOR
                 AssetDatabase.CreateAsset(clip, assetPath);
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
+#endif
 
                 m_AnimationBuilder = null;
 
