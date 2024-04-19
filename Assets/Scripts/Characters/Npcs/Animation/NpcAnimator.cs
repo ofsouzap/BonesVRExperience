@@ -174,16 +174,28 @@ namespace BonesVr.Characters.Npcs.Animation
                 };
         }
 
+        public readonly struct PlayClipOptions
+        {
+            public readonly Action onClipFinished;
+
+            public PlayClipOptions(Action onClipFinished = null)
+            {
+                this.onClipFinished = onClipFinished;
+            }
+        }
+
         [SerializeField] private NpcAnimationAnimatingTargets _animationTargets;
         protected NpcAnimationAnimatingTargets AnimationTargets => _animationTargets;
 
         [Tooltip("If set, this clip will start being played on Start")]
         [SerializeField] private NpcAnimationClip _initialClip = null;
 
+        private NpcAnimationClip m_CurrClip = null;
         private TargetTrackAnimators? m_TargetTrackAnimators = null;
         private float m_CurrClipStartTime;
+        private PlayClipOptions? m_CurrClipOptions = null;
 
-        public bool IsPlaying => m_TargetTrackAnimators.HasValue;
+        public bool IsPlaying => m_CurrClip != null;
 
         protected virtual void Start()
         {
@@ -199,11 +211,24 @@ namespace BonesVr.Characters.Npcs.Animation
             {
                 float t = Time.time - m_CurrClipStartTime;
                 AnimationTargets.ApplySnapshot(m_TargetTrackAnimators.Value.GetSnapshot(t));
+                if (t > m_CurrClip.m_Duration)
+                    EndCurrClip();
             }
         }
 
-        public void StartClip(NpcAnimationClip clip)
+        private void EndCurrClip()
         {
+            m_CurrClipOptions?.onClipFinished?.Invoke();
+
+            m_CurrClip = null;
+            m_TargetTrackAnimators = null;
+            m_CurrClipStartTime = 0f;
+            m_CurrClipOptions = null;
+        }
+
+        public void StartClip(NpcAnimationClip clip, PlayClipOptions options)
+        {
+            m_CurrClip = clip;
             m_TargetTrackAnimators = new(
                 clip.m_TextBox,
 
@@ -232,14 +257,19 @@ namespace BonesVr.Characters.Npcs.Animation
                 clip.m_LHGripVal
             );
             m_CurrClipStartTime = Time.time;
+            m_CurrClipOptions = options;
         }
+
+        public void StartClip(NpcAnimationClip clip)
+            => StartClip(clip, new());
 
         /// <summary>
         /// If there is a clip playing, stop it playing.
         /// </summary>
         public void StopClip()
         {
-            m_TargetTrackAnimators = null;
+            if (IsPlaying)
+                EndCurrClip();
         }
     }
 }

@@ -166,6 +166,8 @@ namespace BonesVr.Characters.Npcs.Animation
             }
         }
 
+        public float m_Duration = 0f;
+
         public TextBoxTrack m_TextBox = new();
 
         public Vector3Track m_RootLocalPosition = new();

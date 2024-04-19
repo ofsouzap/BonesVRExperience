@@ -6,6 +6,7 @@ namespace BonesVr.Characters.Npcs.Animation
     public class NpcAnimationClipBuilder
     {
         protected readonly NpcAnimationClip m_AnimationClip;
+        protected float m_LatestKeyframe;
 
         public NpcAnimationClipBuilder()
         {
@@ -13,12 +14,25 @@ namespace BonesVr.Characters.Npcs.Animation
         }
 
         public void AddKeyframe(float t, Snapshot snap)
-            => m_AnimationClip.GiveNextSnapshot(t, snap);
+        {
+            m_AnimationClip.GiveNextSnapshot(t, snap);
+
+            if (t > m_LatestKeyframe)
+                m_LatestKeyframe = t;
+        }
 
         public void AddTextBoxKeyframe(float t)
-            => m_AnimationClip.AddTextBoxKeyframe(t);
+        {
+            m_AnimationClip.AddTextBoxKeyframe(t);
+
+            if (t > m_LatestKeyframe)
+                m_LatestKeyframe = t;
+        }
 
         public NpcAnimationClip Build()
-            => m_AnimationClip;
+        {
+            m_AnimationClip.m_Duration = m_LatestKeyframe;
+            return m_AnimationClip;
+        }
     }
 }
