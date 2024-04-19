@@ -476,8 +476,8 @@
                 },
                 {
                     "name": "",
-                    "id": "caae30aa-04d1-4d9c-892f-b143e1ce5720",
-                    "path": "<XRController>{LeftHand}/primaryTouch",
+                    "id": "717fd67c-e7d9-4f62-a700-20e63418b68f",
+                    "path": "<XRController>{LeftHand}/primaryTouched",
                     "interactions": "",
                     "processors": "",
                     "groups": "Main",
@@ -487,8 +487,8 @@
                 },
                 {
                     "name": "",
-                    "id": "2e7fb581-88ed-4c36-9d0f-81318475b1be",
-                    "path": "<XRController>{LeftHand}/secondaryTouch",
+                    "id": "fa8fb09e-250e-4045-aab6-cb1ecb6deb6e",
+                    "path": "<XRController>{LeftHand}/secondaryTouched",
                     "interactions": "",
                     "processors": "",
                     "groups": "Main",
@@ -926,8 +926,8 @@
                 },
                 {
                     "name": "",
-                    "id": "bfd69a6c-944f-4947-be0a-8a2094b27b10",
-                    "path": "<XRController>{RightHand}/primaryTouch",
+                    "id": "9985bc85-6319-4df9-aeeb-741e2accba50",
+                    "path": "<XRController>{RightHand}/primaryTouched",
                     "interactions": "",
                     "processors": "",
                     "groups": "Main",
@@ -937,8 +937,8 @@
                 },
                 {
                     "name": "",
-                    "id": "fa1e7217-33a6-434f-ab06-10a4915aadcf",
-                    "path": "<XRController>{RightHand}/secondaryTouch",
+                    "id": "55b35c41-1015-4097-9c26-2e35db75be6f",
+                    "path": "<XRController>{RightHand}/secondaryTouched",
                     "interactions": "",
                     "processors": "",
                     "groups": "Main",
