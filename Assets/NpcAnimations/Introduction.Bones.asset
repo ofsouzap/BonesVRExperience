@@ -18,6 +18,12 @@ MonoBehaviour:
       val: no
     - time: 5
       val: hi
+    - time: 10
+      val: 
+    - time: 12
+      val: hi again
+    - time: 14
+      val: 
   m_RootLocalPosition:
     m_Keyframes:
     - time: 0.022755623
