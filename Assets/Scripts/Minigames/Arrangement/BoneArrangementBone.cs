@@ -9,6 +9,11 @@ namespace BonesVr.Minigames.Arrangement
         public XRBaseInteractable Interactable => GetComponent<XRBaseInteractable>();
 
         /// <summary>
+        /// Whether a grab interactor is currently holding this bone.
+        /// </summary>
+        public bool IsGrabInteractorHeld { get; private set; }
+
+        /// <summary>
         /// Whether a socket is currently holding this bone.
         /// </summary>
         public bool IsSocketHeld { get; private set; }

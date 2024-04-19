@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static BonesVr.Characters.Npcs.Animation.NpcAnimationClip;
 
 namespace BonesVr.Characters.Npcs.Animation
@@ -187,23 +188,12 @@ namespace BonesVr.Characters.Npcs.Animation
         [SerializeField] private NpcAnimationAnimatingTargets _animationTargets;
         protected NpcAnimationAnimatingTargets AnimationTargets => _animationTargets;
 
-        [Tooltip("If set, this clip will start being played on Start")]
-        [SerializeField] private NpcAnimationClip _initialClip = null;
-
         private NpcAnimationClip m_CurrClip = null;
         private TargetTrackAnimators? m_TargetTrackAnimators = null;
         private float m_CurrClipStartTime;
         private PlayClipOptions? m_CurrClipOptions = null;
 
         public bool IsPlaying => m_CurrClip != null;
-
-        protected virtual void Start()
-        {
-            if (_initialClip != null)
-                StartClip(_initialClip);
-            else
-                StopClip();
-        }
 
         protected virtual void Update()
         {

@@ -5,16 +5,19 @@ namespace BonesVr.Minigames.Arrangement
 {
     public class XRSocketInteractor_BoneArrangement : XRSocketInteractor
     {
-        private bool MinigameBoneIsCompatible(BoneArrangementBone minigameBone)
+        private bool MinigameBoneIsHoverCompatible(BoneArrangementBone minigameBone)
             => !minigameBone.IsSocketHeld;
 
-        protected bool TransformIsCompatible(Transform transform)
-            => transform.TryGetComponent<BoneArrangementBone>(out var minigameBone) && MinigameBoneIsCompatible(minigameBone);
+        protected bool TransformIsHoverCompatible(Transform transform)
+            => transform.TryGetComponent<BoneArrangementBone>(out var minigameBone) && MinigameBoneIsHoverCompatible(minigameBone);
+
+        protected bool TransformIsSelectCompatible(Transform transform)
+            => transform.TryGetComponent<BoneArrangementBone>(out var _);
 
         public override bool CanHover(IXRHoverInteractable interactable)
-            => base.CanHover(interactable) && TransformIsCompatible(interactable.transform);
+            => base.CanHover(interactable) && TransformIsHoverCompatible(interactable.transform);
 
         public override bool CanSelect(IXRSelectInteractable interactable)
-            => base.CanSelect(interactable) && TransformIsCompatible(interactable.transform);
+            => base.CanSelect(interactable) && TransformIsSelectCompatible(interactable.transform);
     }
 }

@@ -1,11 +1,15 @@
 ﻿using BonesVr.Player;
 using BonesVr.Progression;
+using BonesVr.Utils;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BonesVr.SceneControllers
 {
     public class LabSceneContoller : SceneController
     {
+        public static LabSceneContoller SceneInstance(GameObject gameObject) => SceneSingleton<LabSceneContoller>.SceneInstance(gameObject.scene);
+
         [SerializeField] private PlayerProgress _playerProgress;
         protected PlayerProgress PlayerProgress => _playerProgress;
 

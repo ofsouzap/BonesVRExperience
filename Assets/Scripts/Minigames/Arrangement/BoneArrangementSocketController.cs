@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using BonesVr.Utils;
+using System.Security.Cryptography;
 
 namespace BonesVr.Minigames.Arrangement
 {
@@ -40,6 +41,11 @@ namespace BonesVr.Minigames.Arrangement
         [SerializeField] private GameObject _statusIndicatorIncorrect;
         protected GameObject StatusIndicatorIncorrect => _statusIndicatorIncorrect;
 
+        /// <summary>
+        /// Whether the socket is currently holding the correct bone for the socket.
+        /// </summary>
+        public bool CorrectBoneHeld { get; protected set; }
+
         protected Matrix4x4 GetGizmoExtraTrsMat()
             => TransformMatrices.FromTrs(_previewGizmoPosition, _previewGizmoRotation, _previewGizmoScale);
 
@@ -71,8 +77,18 @@ namespace BonesVr.Minigames.Arrangement
         protected TRS GetPreviewGizmoTrs()
             => TransformMatrices.ToTrs(GetPreviewGizmoTrsMat());
 
+        public ArrangementMinigame GetMinigameComponent()
+            => GetComponentInParent<ArrangementMinigame>();
+
+        protected virtual void Awake()
+        {
+            if (GetMinigameComponent() == null)
+                Debug.LogWarning("No parent arrangement minigame component found");
+        }
+
         protected virtual void Start()
         {
+            CorrectBoneHeld = false;
             HideStatusIndicators();
         }
 
@@ -109,8 +125,11 @@ namespace BonesVr.Minigames.Arrangement
                 OnBoneSelected(bone);
         }
 
-        private void OnInteractorSelectExit(SelectExitEventArgs _)
+        private void OnInteractorSelectExit(SelectExitEventArgs args)
         {
+            if (args.interactableObject.transform.TryGetComponent<BoneArrangementBone>(out var bone))
+                OnBoneDeselected(bone);
+
             HideStatusIndicators();
         }
 
@@ -122,10 +141,17 @@ namespace BonesVr.Minigames.Arrangement
                 ShowIncorrectStatusIndicator();
 
             if (bone.Type == CorrectBoneType)
-            {
-                // TODO - this is where the correct bone has been selected. Can do something here
-                // TODO - this seems to be called repeatedly when the correct bone is in the slot, not just when it starts being selected. Might be a problem
-            }
+                CorrectBoneHeld = true;
+            else
+                CorrectBoneHeld = false;
+
+            GetMinigameComponent().OnSocketHasChanged();
+        }
+
+        protected virtual void OnBoneDeselected(BoneArrangementBone bone)
+        {
+            CorrectBoneHeld = false;
+                GetMinigameComponent().OnSocketHasChanged();
         }
 
         private void ShowCorrectStatusIndicator()
