@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8555561320701335752}
   - component: {fileID: 1120743890936310151}
   - component: {fileID: 481768479411841046}
+  - component: {fileID: 3692132680225824218}
   m_Layer: 0
   m_Name: Left Humerus
   m_TagString: Untagged
@@ -227,6 +228,26 @@ MonoBehaviour:
   _resetRotation: 1
   _respawnGracePeriod: 3
   _liveMinHeight: 0
+--- !u!114 &3692132680225824218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401016811583804582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323875cfec061e2479d7af4944cc37c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boneType: 3
+  _xrGrabInteractable: {fileID: 8555561320701335752}
+  OnHoldStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1499218594475756724
 GameObject:
   m_ObjectHideFlags: 0

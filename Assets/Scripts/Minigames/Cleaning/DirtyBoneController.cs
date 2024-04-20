@@ -8,16 +8,12 @@ namespace BonesVr.Minigames.Cleaning
     {
         private const string k_MaterialDirtinessRef = "_Dirtiness";
 
-        [SerializeField] private int _dirtinessTextureSize = 512;
-        public int DirtinessTextureSize => _dirtinessTextureSize;
-
-        public int DirtinessTextureSizeSqr => DirtinessTextureSize * DirtinessTextureSize;
-
         [SerializeField] private MeshRenderer _meshRenderer;
         public MeshRenderer MeshRenderer => _meshRenderer;
 
         public MeshFilter MeshFilter => MeshRenderer.gameObject.GetComponent<MeshFilter>();
 
+        [Range(0, 1)]
         [SerializeField] private float _initialDirtiness;
         private float InitialDirtiness => _initialDirtiness;
 
@@ -48,6 +44,11 @@ namespace BonesVr.Minigames.Cleaning
         }
 
         public float GetDirtiness() => m_Dirtiness;
+
+        /// <summary>
+        /// Checks if the bone is fully clean by checking its dirtiness value is approximately 0.
+        /// </summary>
+        public bool IsFullyClean => GetDirtiness() < 1e-6f;
 
         public void SetDirtiness(float val)
         {

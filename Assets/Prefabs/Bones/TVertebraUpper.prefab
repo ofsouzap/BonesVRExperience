@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 7677363640311071835}
   - component: {fileID: 6770174497296611630}
   - component: {fileID: 688033858579009824}
+  - component: {fileID: 7461540842699453679}
   m_Layer: 0
   m_Name: TVertebraUpper
   m_TagString: Untagged
@@ -318,6 +319,26 @@ MonoBehaviour:
   _resetRotation: 1
   _respawnGracePeriod: 3
   _liveMinHeight: 0
+--- !u!114 &7461540842699453679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873828108139476816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323875cfec061e2479d7af4944cc37c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boneType: 5
+  _xrGrabInteractable: {fileID: 7677363640311071835}
+  OnHoldStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5397418962947374038
 GameObject:
   m_ObjectHideFlags: 0

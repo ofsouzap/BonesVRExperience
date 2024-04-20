@@ -133,14 +133,14 @@ namespace BonesVr.Minigames.Arrangement
             HideStatusIndicators();
         }
 
-        protected virtual void OnBoneSelected(BoneArrangementBone bone)
+        protected virtual void OnBoneSelected(BoneArrangementBone arrangementBone)
         {
-            if (bone.Type == CorrectBoneType)
+            if (arrangementBone.Bone.Type == CorrectBoneType)
                 ShowCorrectStatusIndicator();
             else
                 ShowIncorrectStatusIndicator();
 
-            if (bone.Type == CorrectBoneType)
+            if (arrangementBone.Bone.Type == CorrectBoneType)
                 CorrectBoneHeld = true;
             else
                 CorrectBoneHeld = false;

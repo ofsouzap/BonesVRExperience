@@ -123,6 +123,11 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: -0.0007822788
       objectReference: {fileID: 0}
+    - target: {fileID: 7184299934043237370, guid: b6052258d712c734280938fb199358b5,
+        type: 3}
+      propertyPath: _boneType
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7230529188474409788, guid: b6052258d712c734280938fb199358b5,
         type: 3}
       propertyPath: m_Center.x

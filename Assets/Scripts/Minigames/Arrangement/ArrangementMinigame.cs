@@ -7,13 +7,24 @@ namespace BonesVr.Minigames.Arrangement
 {
     public class ArrangementMinigame : MonoBehaviour
     {
-        public UnityEvent MinigameCompleted;
+        /// <summary>
+        /// When the minigame is first completed.
+        /// </summary>
+        public UnityEvent MinigameFirstCompleted;
 
-        private bool m_MinigameCompleted;
+        /// <summary>
+        /// Whether the minigame has ever been completed.
+        /// </summary>
+        private bool m_MinigameCompletedBefore;
+
+        /// <summary>
+        /// Whether the minigame is currently in a completed state.
+        /// </summary>
+        public bool MinigameInCompletedState { get; private set; }
 
         protected virtual void Start()
         {
-            m_MinigameCompleted = false;
+            m_MinigameCompletedBefore = false;
         }
 
         protected virtual void OnValidate()
@@ -30,10 +41,12 @@ namespace BonesVr.Minigames.Arrangement
         protected bool CheckIfMinigameComplete()
             => GetSocketControllers().All(x => x.CorrectBoneHeld);
 
-        public void CompleteMinigame()
+        public void OnMinigameCompleted()
         {
-            m_MinigameCompleted = true;
-            MinigameCompleted.Invoke();
+            if (!m_MinigameCompletedBefore)
+                MinigameFirstCompleted.Invoke();
+
+            m_MinigameCompletedBefore = true;
         }
 
         /// <summary>
@@ -42,11 +55,13 @@ namespace BonesVr.Minigames.Arrangement
         /// </summary>
         public void OnSocketHasChanged()
         {
-            if (!m_MinigameCompleted)
+            if (CheckIfMinigameComplete())
             {
-                if (CheckIfMinigameComplete())
-                    CompleteMinigame();
+                MinigameInCompletedState = true;
+                OnMinigameCompleted();
             }
+            else
+                MinigameInCompletedState = false;
         }
     }
 }

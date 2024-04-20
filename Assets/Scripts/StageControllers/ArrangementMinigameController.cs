@@ -53,14 +53,14 @@ namespace BonesVr.StageControllers
         {
             base.OnEnable();
 
-            ArrangementMinigame.MinigameCompleted.AddListener(OnArrangementMinigameCompleted);
+            ArrangementMinigame.MinigameFirstCompleted.AddListener(OnArrangementMinigameCompleted);
         }
 
         protected override void OnDisable()
         {
             base.OnDisable();
 
-            ArrangementMinigame.MinigameCompleted.RemoveListener(OnArrangementMinigameCompleted);
+            ArrangementMinigame.MinigameFirstCompleted.RemoveListener(OnArrangementMinigameCompleted);
         }
 
         private void OnArrangementMinigameCompleted()

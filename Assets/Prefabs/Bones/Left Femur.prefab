@@ -98,6 +98,11 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: -0.008654471
       objectReference: {fileID: 0}
+    - target: {fileID: 7126599175806321489, guid: 2754f0c73e0a8bb4f8f6add022dc3e4e,
+        type: 3}
+      propertyPath: _boneType
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7365903888855876237, guid: 2754f0c73e0a8bb4f8f6add022dc3e4e,
         type: 3}
       propertyPath: m_LocalPosition.x

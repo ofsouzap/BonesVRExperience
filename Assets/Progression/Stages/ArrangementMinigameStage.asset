@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArrangementMinigameStage
   m_EditorClassIdentifier: 
   m_StageName: Arrangement Minigame
-  m_NextStage: {fileID: 0}
+  m_NextStage: {fileID: 11400000, guid: 8653c1ef0658ddc4b950af0fa1f4250e, type: 2}
   m_UsePlayerStartPosition: 1
   m_PlayerStartPosition: {x: 0, y: 0.6, z: 5}
   m_UsePlayerStartRotation: 1

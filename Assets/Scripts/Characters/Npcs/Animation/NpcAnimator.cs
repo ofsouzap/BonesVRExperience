@@ -188,6 +188,9 @@ namespace BonesVr.Characters.Npcs.Animation
         [SerializeField] private NpcAnimationAnimatingTargets _animationTargets;
         protected NpcAnimationAnimatingTargets AnimationTargets => _animationTargets;
 
+        [Tooltip("Event for when any clip is finished")]
+        public UnityEvent<NpcAnimationClip> m_AnyClipFinished;
+
         private NpcAnimationClip m_CurrClip = null;
         private TargetTrackAnimators? m_TargetTrackAnimators = null;
         private float m_CurrClipStartTime;
@@ -195,11 +198,16 @@ namespace BonesVr.Characters.Npcs.Animation
 
         public bool IsPlaying => m_CurrClip != null;
 
+        /// <summary>
+        /// How long the current clip has been playing for, or null if there is no clip playing.
+        /// </summary>
+        public float? ClipPlayTime => IsPlaying ? Time.time - m_CurrClipStartTime : null;
+
         protected virtual void Update()
         {
             if (IsPlaying)
             {
-                float t = Time.time - m_CurrClipStartTime;
+                float t = ClipPlayTime.Value;
                 AnimationTargets.ApplySnapshot(m_TargetTrackAnimators.Value.GetSnapshot(t));
                 if (t > m_CurrClip.m_Duration)
                     EndCurrClip();
@@ -208,12 +216,18 @@ namespace BonesVr.Characters.Npcs.Animation
 
         private void EndCurrClip()
         {
-            m_CurrClipOptions?.onClipFinished?.Invoke();
+            RunClipFinishedCallbacks();
 
             m_CurrClip = null;
             m_TargetTrackAnimators = null;
             m_CurrClipStartTime = 0f;
             m_CurrClipOptions = null;
+        }
+
+        private void RunClipFinishedCallbacks()
+        {
+            m_AnyClipFinished.Invoke(m_CurrClip);
+            m_CurrClipOptions?.onClipFinished?.Invoke();
         }
 
         public void StartClip(NpcAnimationClip clip, PlayClipOptions options)

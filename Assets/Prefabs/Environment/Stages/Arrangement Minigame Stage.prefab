@@ -162,7 +162,7 @@ PrefabInstance:
     - target: {fileID: 5090542401201418379, guid: 0c50caa9d61abbf46940bf60bdc09b07,
         type: 3}
       propertyPath: m_Name
-      value: Operating Table Section - For Arrangement
+      value: Operating Table Section - Full For Arrangement
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

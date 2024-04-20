@@ -3,15 +3,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace BonesVr.Minigames.Arrangement
 {
+    [RequireComponent(typeof(Bone))]
     [RequireComponent(typeof(XRBaseInteractable))]
-    public class BoneArrangementBone : Bone
+    public class BoneArrangementBone : MonoBehaviour
     {
-        public XRBaseInteractable Interactable => GetComponent<XRBaseInteractable>();
-
-        /// <summary>
-        /// Whether a grab interactor is currently holding this bone.
-        /// </summary>
-        public bool IsGrabInteractorHeld { get; private set; }
+        public Bone Bone => GetComponent<Bone>();
 
         /// <summary>
         /// Whether a socket is currently holding this bone.
@@ -25,30 +21,17 @@ namespace BonesVr.Minigames.Arrangement
 
         protected virtual void OnEnable()
         {
-            Interactable.selectEntered.AddListener(OnSelected);
-            Interactable.selectExited.AddListener(OnDeselected);
+            Bone.SocketHoldStart.AddListener(OnSocketHeldStart);
+            Bone.SocketHoldEnd.AddListener(OnSocketHeldEnd);
         }
 
         protected virtual void OnDisable()
         {
-            Interactable.selectEntered.RemoveListener(OnSelected);
-            Interactable.selectExited.RemoveListener(OnDeselected);
+            Bone.SocketHoldStart.RemoveListener(OnSocketHeldStart);
+            Bone.SocketHoldEnd.RemoveListener(OnSocketHeldEnd);
         }
 
-        private void OnSelected(SelectEnterEventArgs args)
-        {
-            if (args.interactorObject is XRSocketInteractor)
-            {
-                IsSocketHeld = true;
-            }
-        }
-
-        private void OnDeselected(SelectExitEventArgs args)
-        {
-            if (args.interactorObject is XRSocketInteractor)
-            {
-                IsSocketHeld = false;
-            }
-        }
+        private void OnSocketHeldStart(XRSocketInteractor _) => IsSocketHeld = true;
+        private void OnSocketHeldEnd(XRSocketInteractor _) => IsSocketHeld = false;
     }
 }

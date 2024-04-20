@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5137267256209544150}
   - component: {fileID: 1158141626248173928}
   - component: {fileID: 2916832022348719993}
+  - component: {fileID: 3513961263655881446}
   m_Layer: 0
   m_Name: TVertebraLower
   m_TagString: Untagged
@@ -318,6 +319,26 @@ MonoBehaviour:
   _resetRotation: 1
   _respawnGracePeriod: 3
   _liveMinHeight: 0
+--- !u!114 &3513961263655881446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873828108139476816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323875cfec061e2479d7af4944cc37c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boneType: 7
+  _xrGrabInteractable: {fileID: 5137267256209544150}
+  OnHoldStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6116148434972956754
 GameObject:
   m_ObjectHideFlags: 0

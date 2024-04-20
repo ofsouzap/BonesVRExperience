@@ -38,6 +38,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right Ulna
       objectReference: {fileID: 0}
+    - target: {fileID: 2785655705901834756, guid: 6de5f33c42e82c94892a74973da8738d,
+        type: 3}
+      propertyPath: _boneType
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2792955058329288547, guid: 6de5f33c42e82c94892a74973da8738d,
         type: 3}
       propertyPath: m_Center.x
