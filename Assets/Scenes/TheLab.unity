@@ -688,7 +688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerProgress: {fileID: 11400000, guid: e7e475656bb62804c8979928d13c570c, type: 2}
   _mainPlatformRoot: {fileID: 428389238}
-  m_MainPlatformCurrStageTransform: {fileID: 0}
+  m_CurrStageTransform: {fileID: 1160356538}
 --- !u!4 &1529508004
 Transform:
   m_ObjectHideFlags: 0

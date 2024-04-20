@@ -1,9 +1,9 @@
 ﻿using BonesVr.Characters.Npcs.Animation;
 using UnityEngine;
 
-namespace BonesVr.SceneAreaStageControllers.MainPlatform
+namespace BonesVr.StageControllers
 {
-    public class MainPlatformSkullEduBonesController : MainPlatformStageController
+    public class SkullEduBonesController : StageController
     {
         [Header("NPC Animations")]
 

@@ -18,5 +18,5 @@ MonoBehaviour:
   m_PlayerStartPosition: {x: -0.87, y: 0.6, z: 7.168}
   m_UsePlayerStartRotation: 1
   m_PlayerStartRotationEuler: {x: 0, y: 90, z: 0}
-  m_MainPlatformStagePrefab: {fileID: 5260560237282654522, guid: 458cbde4d487dcb45ab7f1eaaa25edd4,
+  m_StagePrefab: {fileID: 5260560237282654522, guid: 458cbde4d487dcb45ab7f1eaaa25edd4,
     type: 3}

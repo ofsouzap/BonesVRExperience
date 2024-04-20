@@ -1,9 +1,9 @@
 ﻿using BonesVr.Progression;
 using UnityEngine;
 
-namespace BonesVr.SceneAreaStageControllers
+namespace BonesVr.StageControllers
 {
-    public abstract class SceneAreaStageController : MonoBehaviour
+    public abstract class StageController : MonoBehaviour
     {
         [SerializeField] private PlayerProgress _playerProgress;
         protected PlayerProgress PlayerProgress => _playerProgress;

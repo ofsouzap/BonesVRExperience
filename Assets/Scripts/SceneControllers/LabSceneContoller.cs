@@ -13,11 +13,11 @@ namespace BonesVr.SceneControllers
         [SerializeField] private PlayerProgress _playerProgress;
         protected PlayerProgress PlayerProgress => _playerProgress;
 
-        [Tooltip("The root transform for the main platform. This is used as a parent transform when instantiating scene area progression stage prefabs")]
+        [Tooltip("The root transform for the main platform. This is used as a parent transform when instantiating stage prefabs")]
         [SerializeField] private Transform _mainPlatformRoot;
         protected Transform MainPlatformRoot => _mainPlatformRoot;
 
-        [SerializeField] private Transform m_MainPlatformCurrStageTransform;
+        [SerializeField] private Transform m_CurrStageTransform;
 
         protected override void Start()
         {
@@ -53,16 +53,16 @@ namespace BonesVr.SceneControllers
             if (startRot.HasValue)
                 PlayerController.SceneInstance(gameObject).SetPlayerRotation(startRot.Value);
 
-            if (stage.GetMainPlatformStagePrefab() != null)
-                SetMainPlatformStagePrefab(stage.GetMainPlatformStagePrefab());
+            if (stage.GetStagePrefab() != null)
+                SetStagePrefab(stage.GetStagePrefab());
         }
 
-        protected void SetMainPlatformStagePrefab(GameObject prefab)
+        protected void SetStagePrefab(GameObject prefab)
         {
-            if (m_MainPlatformCurrStageTransform != null)
-                Destroy(m_MainPlatformCurrStageTransform.gameObject);
+            if (m_CurrStageTransform != null)
+                Destroy(m_CurrStageTransform.gameObject);
 
-            m_MainPlatformCurrStageTransform = Instantiate(prefab, MainPlatformRoot).transform;
+            m_CurrStageTransform = Instantiate(prefab, MainPlatformRoot).transform;
         }
     }
 }

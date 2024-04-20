@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: DemoStage
   m_EditorClassIdentifier: 
   m_StageName: Demo
-  m_MainPlatformStagePrefab: {fileID: 5260560237282654522, guid: 234754d2d18108c4881d9515775187c0,
-    type: 3}
   m_NextStage: {fileID: 0}
+  m_UsePlayerStartPosition: 0
+  m_PlayerStartPosition: {x: 0, y: 0, z: 0}
+  m_UsePlayerStartRotation: 0
+  m_PlayerStartRotationEuler: {x: 0, y: 0, z: 0}
+  m_StagePrefab: {fileID: 5260560237282654522, guid: 234754d2d18108c4881d9515775187c0,
+    type: 3}

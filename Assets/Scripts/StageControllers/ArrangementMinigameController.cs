@@ -2,9 +2,9 @@
 using BonesVr.Minigames.Arrangement;
 using UnityEngine;
 
-namespace BonesVr.SceneAreaStageControllers.MainPlatform
+namespace BonesVr.StageControllers
 {
-    public class MainPlatformArrangementMinigameController : MainPlatformStageController
+    public class ArrangementMinigameController : StageController
     {
         [Header("NPC Animations")]
 
