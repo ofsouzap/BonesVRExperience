@@ -14,12 +14,12 @@ namespace BonesVr.Progression
         [SerializeField] private bool m_UsePlayerStartRotation = false;
         [SerializeField] private Vector3 m_PlayerStartRotationEuler;
 
-        [SerializeField] private GameObject m_StagePrefab;
+        [SerializeField] private string m_StageSceneName;
 
         public string GetStageName() => m_StageName;
         public Vector3? GetPlayerStartPosition() => m_UsePlayerStartPosition ? m_PlayerStartPosition : null;
         public Quaternion? GetPlayerStartRotation() => m_UsePlayerStartRotation ? Quaternion.Euler(m_PlayerStartRotationEuler) : null;
-        public GameObject GetStagePrefab() => m_StagePrefab;
+        public string GetStageSceneAdditiveName() => m_StageSceneName;
         public ProgressionStage GetNextStage() => m_NextStage;
     }
 }

@@ -18,5 +18,4 @@ MonoBehaviour:
   m_PlayerStartPosition: {x: -2, y: 0.6, z: 10.5}
   m_UsePlayerStartRotation: 1
   m_PlayerStartRotationEuler: {x: 0, y: 90, z: 0}
-  m_StagePrefab: {fileID: 5260560237282654522, guid: 9bf3959dea6844f40847759991e0c7ba,
-    type: 3}
+  m_StageSceneName: Intro Stage

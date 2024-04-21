@@ -1,8 +1,8 @@
 ﻿using BonesVr.Player;
 using BonesVr.Progression;
 using BonesVr.Utils;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace BonesVr.SceneControllers
 {
@@ -17,7 +17,14 @@ namespace BonesVr.SceneControllers
         [SerializeField] private Transform _mainPlatformRoot;
         protected Transform MainPlatformRoot => _mainPlatformRoot;
 
-        [SerializeField] private Transform m_CurrStageTransform;
+        private Scene? m_CurrStageSceneAdditive;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            m_CurrStageSceneAdditive = null;
+        }
 
         protected override void Start()
         {
@@ -53,16 +60,16 @@ namespace BonesVr.SceneControllers
             if (startRot.HasValue)
                 PlayerController.SceneInstance(gameObject).SetPlayerRotation(startRot.Value);
 
-            if (stage.GetStagePrefab() != null)
-                SetStagePrefab(stage.GetStagePrefab());
+            if (!string.IsNullOrEmpty(stage.GetStageSceneAdditiveName()))
+                SetStageSceneAdditive(stage.GetStageSceneAdditiveName());
         }
 
-        protected void SetStagePrefab(GameObject prefab)
+        protected void SetStageSceneAdditive(string sceneAdditiveName)
         {
-            if (m_CurrStageTransform != null)
-                Destroy(m_CurrStageTransform.gameObject);
+            if (m_CurrStageSceneAdditive.HasValue)
+                SceneManager.UnloadSceneAsync(m_CurrStageSceneAdditive.Value);
 
-            m_CurrStageTransform = Instantiate(prefab, MainPlatformRoot).transform;
+            m_CurrStageSceneAdditive = SceneManager.LoadScene(sceneAdditiveName, new LoadSceneParameters(LoadSceneMode.Additive));
         }
     }
 }

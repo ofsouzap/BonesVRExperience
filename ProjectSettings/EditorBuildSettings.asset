@@ -11,6 +11,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TheLab.unity
     guid: 1917932045c052e44ae6a12653e7bd6f
+  - enabled: 1
+    path: Assets/Scenes/StageAdditives/Demo Stage.unity
+    guid: f2e6894941c96eb42af97ac7ffc097d1
+  - enabled: 1
+    path: Assets/Scenes/StageAdditives/Intro Stage.unity
+    guid: 450f3b927dc85834cb95e97f6802ffe0
+  - enabled: 1
+    path: Assets/Scenes/StageAdditives/Skull EduBones Stage.unity
+    guid: 33c6cf5d596079245931b5ecd120210b
+  - enabled: 1
+    path: Assets/Scenes/StageAdditives/Arrangement Minigame Stage.unity
+    guid: fcadab0eff8859042bf5cf5fbe90d908
+  - enabled: 1
+    path: Assets/Scenes/StageAdditives/First Task Stage.unity
+    guid: b1b5949e6d58e5e40878cb16bc1a04f1
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d81617fea42d26f4ea09230daf797d58,
       type: 2}
